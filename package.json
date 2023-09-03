@@ -2,7 +2,7 @@
   "name": "play-pro--progress",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://coffee-avkv.onrender.com/",
+  "homepage": "",
   "author": "raed rdhaounia",
   "description": "This project will manage the issues, tests, API needs, and screenshots of the V0 of the player site just for a quick demo",
   "dependencies": {
