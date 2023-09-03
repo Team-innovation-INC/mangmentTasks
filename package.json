@@ -1,10 +1,10 @@
 {
-  "name": "coffee",
+  "name": "play-pro--progress",
   "version": "1.0.0",
   "private": true,
   "homepage": "https://coffee-avkv.onrender.com/",
   "author": "raed rdhaounia",
-  "description": "management of coffee-type businesses to track stock, productivity, sales, salaries, ... (powerd by Berry)",
+  "description": "This project will manage the issues, tests, API needs, and screenshots of the V0 of the player site just for a quick demo",
   "dependencies": {
     "@emotion/cache": "^11.9.3",
     "@emotion/react": "^11.9.3",
