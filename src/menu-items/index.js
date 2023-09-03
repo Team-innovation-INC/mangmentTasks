@@ -1,6 +1,6 @@
 import dashboard from './dashboard';
-import waiter from './waiter';
-import admin from './admin';
+import waiter from './developer';
+import admin from './projectOwner';
 import other from './other';
 
 // ==============================|| MENU ITEMS ||============================== //

@@ -13,32 +13,35 @@ const icons = {
 // ==============================|| WAITER MENU ITEMS ||============================== //
 
 const waiter = {
-  id: 'waiter',
-  title: 'Waiter',
-  caption: 'this for the waiter controle menu screen',
+  id: 'developer',
+  title: 'developer',
+  caption: 'this for the developer control space ',
   type: 'group',
   children: [
     {
-      id: 'waiter-invoice',
-      title: 'Invoice',
+      id: 'developer-progress',
+      title: 'progress',
+      caption: 'issues management states',
       type: 'item',
-      url: '/waiter/invoice',
+      url: '/developer/progress',
       icon: icons.IconBrandProducthunt,
       breadcrumbs: false
     },
     {
-      id: 'waiter-calendar',
+      id: 'developer-calendar',
       title: 'calendar',
+      caption: 'this calender for the the developer tasks daily',
       type: 'item',
-      url: '/waiter/calendar',
+      url: '/developer/calendar',
       icon: icons.IconCalendar,
       breadcrumbs: false
     },
     {
-      id: 'waiter-recette',
-      title: 'recette',
+      id: 'developer-document',
+      title: 'document',
       type: 'item',
-      url: '/waiter/recette',
+      url: '/developer/document',
+      caption: 'space for document management',
       icon: icons.IconFileInvoice,
       breadcrumbs: false
     }
