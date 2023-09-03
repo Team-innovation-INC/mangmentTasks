@@ -18,7 +18,7 @@ import {
 
 // assets
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { dayOfWeek, daysOfMounth } from 'utils/dates';
+import { dayOfWeek, CurrentMonth, daysOfMonth } from 'utils/dates';
 
 // styles
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -110,18 +110,18 @@ const MenuCard = () => {
               sx={{ mt: 0 }}
               primary={
                 <Typography variant="subtitle1" sx={{ color: theme.palette.primary[800] }}>
-                  Mounthly
+                  {CurrentMonth(daysOfMonth)}
                 </Typography>
               }
               secondary={
                 <Typography variant="caption">
-                  {dayOfWeek} day of {daysOfMounth}
+                  {dayOfWeek} day of {daysOfMonth}
                 </Typography>
               }
             />
           </ListItem>
         </List>
-        <LinearProgressWithLabel value={(dayOfWeek * 100) / daysOfMounth} />
+        <LinearProgressWithLabel value={(dayOfWeek * 100) / daysOfMonth} />
       </CardContent>
     </CardStyle>
   );

@@ -3,10 +3,10 @@
 import { useRoutes } from 'react-router-dom';
 
 // routes
-import MainRoutes from './MainRoutes';
-import AuthenticationRoutes from './AuthenticationRoutes';
-import AdminRoutes from './AdminRoutes';
-import WaiterRoutes from './WaiterRoutes';
+import MainRoutes from './main.routes';
+import AuthenticationRoutes from './authentication.routes';
+import AdminRoutes from './projectOwner.routes';
+import WaiterRoutes from './developer.routes';
 
 // ==============================|| ROUTING RENDER ||============================== //
 
