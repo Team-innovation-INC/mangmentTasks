@@ -1,8 +1,8 @@
 // assets
-import { IconBrandChrome, IconHelp } from '@tabler/icons';
+import { IconBrandChrome, IconCode } from '@tabler/icons';
 
 // constant
-const icons = { IconBrandChrome, IconHelp };
+const icons = { IconBrandChrome, IconCode };
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
 
@@ -14,16 +14,19 @@ const other = {
       id: 'sample-page',
       title: 'Sample Page',
       type: 'item',
-      url: '/sample-page',
+      url: 'https://progress-e7yl.onrender.com/login',
       icon: icons.IconBrandChrome,
-      breadcrumbs: false
+      caption: 'this is the main project extension idea',
+      breadcrumbs: false,
+      external: true
     },
     {
       id: 'documentation',
-      title: 'Documentation',
+      title: 'source code',
       type: 'item',
-      url: '#',
-      icon: icons.IconHelp,
+      caption: 'this is the github source code link',
+      url: 'https://github.com/Team-innovation-INC/mangmentTasks',
+      icon: icons.IconCode,
       external: true,
       target: true
     }

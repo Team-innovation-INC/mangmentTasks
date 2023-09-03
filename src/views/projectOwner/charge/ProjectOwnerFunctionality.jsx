@@ -4,10 +4,10 @@ import { Typography } from '@mui/material';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 
-// ==============================|| ADMIN BENEFITS PAGE ||============================== //
+// ==============================|| Project Owner Functionality PAGE ||============================== //
 
-const Benefits = () => (
-  <MainCard title="Admin Benefits">
+const ProjectOwnerFunctionality = () => (
+  <MainCard title="Project Owner Functionality">
     <Typography variant="body2">
       Lorem ipsum dolor sit amen, consenter nipissing eli, sed do elusion tempos incident ut laborers et doolie magna alissa. Ut enif ad
       minim venice, quin nostrum exercitation illampu laborings nisi ut liquid ex ea commons construal. Duos aube grue dolor in reprehended
@@ -17,4 +17,4 @@ const Benefits = () => (
   </MainCard>
 );
 
-export default Benefits;
+export default ProjectOwnerFunctionality;
