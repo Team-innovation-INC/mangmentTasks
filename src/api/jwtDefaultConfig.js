@@ -6,8 +6,8 @@ const endPoints = {
   // -- test
   test: '/test',
   // -- auth endPoints
-  loginEndpoint: '/api/auth/login',
-  registerEndpoint: '/api/auth/register',
+  loginEndpoint: '/api/auth/sign-in',
+  registerEndpoint: '/api/auth/sign-up',
   getActiveUserEndPoint: '/api/auth/active',
   logoutEndPoint: '/api/auth/logout'
 };
