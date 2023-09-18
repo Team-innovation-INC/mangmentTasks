@@ -35,10 +35,13 @@ import { strengthColor, strengthIndicator } from 'utils/password-strength';
 // assets
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useDispatch } from 'react-redux';
+import { SIGNUP } from 'store/actions';
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
 const FirebaseRegister = ({ ...others }) => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
@@ -128,18 +131,25 @@ const FirebaseRegister = ({ ...others }) => {
         initialValues={{
           email: '',
           password: '',
+          userName: '',
+          fullName: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string().max(255).required('Password is required')
+          password: Yup.string().max(255).required('Password is required'),
+          userName: Yup.string().required('userName is required'),
+          fullName: Yup.string().required('userName is required')
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
+          console.log(values, 'values');
           try {
+            dispatch({ type: SIGNUP, payload: { ...values } });
             if (scriptedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
             }
+            console.log('passe drer ', values);
           } catch (err) {
             console.error(err);
             if (scriptedRef.current) {
@@ -156,24 +166,38 @@ const FirebaseRegister = ({ ...others }) => {
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth
-                  label="First Name"
+                  label="Full Name"
                   margin="normal"
-                  name="fname"
+                  name="fullName"
                   type="text"
-                  defaultValue=""
+                  value={values.fullName}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
                   sx={{ ...theme.typography.customInput }}
                 />
+                {touched.fullName && errors.fullName && (
+                  <FormHelperText error id="standard-weight-helper-text--register">
+                    {errors.fullName}
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth
-                  label="Last Name"
+                  label="user Name"
                   margin="normal"
-                  name="lname"
+                  name="userName"
                   type="text"
-                  defaultValue=""
+                  value={values.userName}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
                   sx={{ ...theme.typography.customInput }}
                 />
+                {touched.userName && errors.userName && (
+                  <FormHelperText error id="standard-weight-helper-text--register">
+                    {errors.userName}
+                  </FormHelperText>
+                )}
               </Grid>
             </Grid>
             <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
@@ -185,7 +209,6 @@ const FirebaseRegister = ({ ...others }) => {
                 name="email"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                inputProps={{}}
               />
               {touched.email && errors.email && (
                 <FormHelperText error id="standard-weight-helper-text--register">
