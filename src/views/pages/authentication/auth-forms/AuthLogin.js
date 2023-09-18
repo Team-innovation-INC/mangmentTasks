@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -34,10 +34,12 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
+import { SINGING } from 'store/actions';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const FirebaseLogin = ({ ...others }) => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
@@ -126,10 +128,11 @@ const FirebaseLogin = ({ ...others }) => {
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string().max(255).required('Password is required')
+          password: Yup.string().max(255).required('Password is required').min(8, 'password have to get at least 8 characters')
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
+            dispatch({ type: SINGING, payload: { ...values } });
             if (scriptedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
