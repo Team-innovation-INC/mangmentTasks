@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Loader from '../../ui-component/Loader';
 // Default export defines the component title in Storybook
 export default {
@@ -23,6 +24,9 @@ export const Warning = () => <Loader _color={'warning'} />;
 export const Info = () => <Loader _color={'info'} />;
 export const Error = () => <Loader _color={'error'} />;
 
+Default.propTypes = {
+  color: PropTypes.string
+};
 Default.args = {
   color: 'primary'
 };
