@@ -22,7 +22,7 @@ function Loader({ _color }) {
   );
 }
 
-Loader.prototype = {
+Loader.propTypes = {
   _color: PropTypes.string.isRequired
 };
 

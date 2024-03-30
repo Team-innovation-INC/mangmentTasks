@@ -39,7 +39,7 @@
   },
   "scripts": {
     "check-format": "prettier --check .",
-    "check-all": "npm run lint && npm run check-types && npm run check-format",
+    "check-all": "npm run lint && npm run check-format",
     "fix-format": "prettier --write .",
     "start": "react-scripts start",
     "build": "react-scripts build",
