@@ -32,5 +32,3 @@ const DeveloperCalendar = () => {
 };
 
 export default DeveloperCalendar;
-
-

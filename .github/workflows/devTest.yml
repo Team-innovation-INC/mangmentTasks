@@ -2,9 +2,9 @@ name: RUN_SERVER
 
 on:
   push:
-    branches: ["develop"]
+    branches: ['develop']
   pull_request:
-    branches: ["develop"]
+    branches: ['develop']
 
 env:
   MongoDBUserName: ${{ secrets.MongoDBUserName }}
