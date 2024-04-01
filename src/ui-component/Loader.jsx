@@ -14,10 +14,10 @@ const LoaderWrapper = styled('div')({
 
 // ==============================|| LOADER ||============================== //
 
-function Loader({ _color }) {
+function Loader({ _color = 'primary' }) {
   return (
     <LoaderWrapper>
-      <LinearProgress color={_color || 'primary'} />
+      <LinearProgress color={_color} />
     </LoaderWrapper>
   );
 }

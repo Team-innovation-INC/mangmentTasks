@@ -130,6 +130,8 @@ const FirebaseLogin = ({ ...others }) => {
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string().max(255).required('Password is required').min(8, 'password have to get at least 8 characters')
         })}
+        validateOnChange={true}
+        validateOnMount
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
             dispatch({ type: SINGING, payload: { ...values } });
@@ -218,8 +220,15 @@ const FirebaseLogin = ({ ...others }) => {
 
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
-                <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
-                  Sign in
+                <Button
+                  disabled={Boolean(isSubmitting || errors.email || errors.password)}
+                  fullWidth
+                  size="large"
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                >
+                  {!isSubmitting ? 'Sign in' : 'loading '}
                 </Button>
               </AnimateButton>
             </Box>

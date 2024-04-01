@@ -13,7 +13,7 @@ const ProjectOwnerAPI = Loadable(lazy(() => import('views/projectOwner/charge/Pr
 
 // ==============================|| MAIN ROUTING ||============================== //
 
-const AdminRoutes = {
+const ProductOwnerRoutes = {
   path: '/projectOwner',
   element: <MainLayout />,
   requiredRole: 'admin',
@@ -46,4 +46,4 @@ const AdminRoutes = {
   ]
 };
 
-export default AdminRoutes;
+export default ProductOwnerRoutes;

@@ -16,6 +16,7 @@ import { IconTallymark1 } from '@tabler/icons';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
+import WebService from 'api/useJwt';
 
 const linkSX = {
   display: 'flex',
@@ -29,7 +30,7 @@ const linkSX = {
 
 const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAlign, separator, title, titleBottom, ...others }) => {
   const theme = useTheme();
-
+  const userRole = WebService().getUserData()?.role.roleName;
   const iconStyle = {
     marginRight: theme.spacing(0.75),
     marginTop: `-${theme.spacing(0.25)}`,
@@ -40,14 +41,13 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
 
   const [main, setMain] = useState();
   const [item, setItem] = useState();
-
   // set active item state
   const getCollapse = (menu) => {
     if (menu.children) {
       menu.children.filter((collapse) => {
         if (collapse.type && collapse.type === 'collapse') {
           getCollapse(collapse);
-        } else if (collapse.type && collapse.type === 'item') {
+        } else if (collapse.type && collapse.type === 'item' && (collapse.role === undefined || collapse.role.includes(userRole))) {
           if (document.location.pathname === config.basename + collapse.url) {
             setMain(menu);
             setItem(collapse);
@@ -60,7 +60,7 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
 
   useEffect(() => {
     navigation?.items?.map((menu) => {
-      if (menu.type && menu.type === 'group') {
+      if (menu.type && menu.type === 'group' && menu.role?.includes(userRole) === false) {
         getCollapse(menu);
       }
       return false;
