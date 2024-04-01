@@ -18,14 +18,26 @@ const projectOwner = {
   title: 'projectOwner',
   caption: 'this for the project owners result space',
   type: 'group',
+  role: ['admin', 'moderator', 'user'],
   children: [
+    {
+      id: 'projectOwner-tasks',
+      title: 'tasks',
+      type: 'item',
+      url: '/projectOwner/tasks',
+      caption: 'tasks list states',
+      icon: icons.IconBan,
+      breadcrumbs: false,
+      role: ['admin', 'moderator', 'user']
+    },
     {
       id: 'projectOwner-issues',
       title: 'issues',
       type: 'item',
       url: '/projectOwner/issues',
       icon: icons.IconBan,
-      breadcrumbs: false
+      breadcrumbs: false,
+      role: ['admin', 'moderator']
     },
     {
       id: 'projectOwner-API',
@@ -33,13 +45,15 @@ const projectOwner = {
       type: 'item',
       url: '/projectOwner/API',
       icon: icons.IconNetwork,
-      breadcrumbs: false
+      breadcrumbs: false,
+      role: ['admin', 'moderator']
     },
     {
       id: 'projectOwner-frontEnd',
       title: 'frontEnd integration',
       type: 'collapse',
       icon: icons.IconWand,
+      role: ['admin', 'moderator'],
       children: [
         {
           id: 'projectOwner-frontEnd-design',
@@ -47,7 +61,8 @@ const projectOwner = {
           type: 'item',
           icon: icons.IconFilter,
           url: '/projectOwner/frontEnd/design',
-          breadcrumbs: false
+          breadcrumbs: false,
+          role: ['admin', 'moderator']
         },
         {
           id: 'projectOwner-frontEnd-functionalities',
@@ -55,7 +70,8 @@ const projectOwner = {
           type: 'item',
           icon: icons.IconCirclesRelation,
           url: '/projectOwner/frontEnd/functionalities',
-          breadcrumbs: false
+          breadcrumbs: false,
+          role: ['admin', 'moderator']
         },
         {
           id: 'projectOwner-frontEnd-API-integration',
@@ -63,7 +79,8 @@ const projectOwner = {
           type: 'item',
           icon: icons.IconBroadcast,
           url: '/projectOwner/frontEnd/API',
-          breadcrumbs: false
+          breadcrumbs: false,
+          role: ['admin', 'moderator']
         }
       ]
     }

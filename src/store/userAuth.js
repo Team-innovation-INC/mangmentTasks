@@ -12,8 +12,6 @@ export const initialState = {
 const authReducer = async (state = initialState, action) => {
   let user = {};
   let isActive = false;
-  console.log(action.type === actionTypes.SINGING, action);
-
   switch (action.type) {
     case actionTypes.SINGING:
       try {
@@ -22,6 +20,9 @@ const authReducer = async (state = initialState, action) => {
           user = response.data.user;
           isActive = true;
         }
+        WebService().setToken(response.data.token);
+        WebService().setUserData(response.data.user);
+        window.location.replace('/dashboard');
       } catch (error) {
         state.userDetails = {};
       }

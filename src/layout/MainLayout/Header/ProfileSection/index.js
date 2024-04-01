@@ -34,10 +34,12 @@ import User1 from 'assets/images/users/user-round.svg';
 
 // assets
 import { IconLogout, IconSearch, IconSettings } from '@tabler/icons';
+import WebService from 'api/useJwt';
 
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
+  const userDetails = WebService().getUserData();
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
   const navigate = useNavigate();
@@ -51,6 +53,12 @@ const ProfileSection = () => {
   const anchorRef = useRef(null);
   const handleLogout = async () => {
     console.log('Logout');
+    WebService().logout();
+    window.location.replace('/');
+  };
+
+  const handleProfile = () => {
+    window.location.replace('/profile');
   };
 
   const handleClose = (event) => {
@@ -105,7 +113,7 @@ const ProfileSection = () => {
         }}
         icon={
           <Avatar
-            src={User1}
+            src={userDetails?.info?.pic ?? User1}
             sx={{
               ...theme.typography.mediumAvatar,
               margin: '8px 0 8px 8px !important',
@@ -153,10 +161,12 @@ const ProfileSection = () => {
                       <Stack direction="row" spacing={0.5} alignItems="center">
                         <Typography variant="h4">Good Morning,</Typography>
                         <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                          Johne Doe
+                          {userDetails?.contact?.fullName}
                         </Typography>
                       </Stack>
-                      <Typography variant="subtitle2">Project Admin</Typography>
+                      <Typography variant="subtitle2">
+                        {userDetails.company.companyName} {userDetails?.role?.roleName}
+                      </Typography>
                     </Stack>
                     <OutlinedInput
                       sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
@@ -178,7 +188,7 @@ const ProfileSection = () => {
                   </Box>
                   <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
                     <Box sx={{ px: 2 }}>
-                      <UpgradePlanCard />
+                      {userDetails?.role?.roleName === 'admin' && <UpgradePlanCard />}
                       <Divider />
                       <List
                         component="nav"
@@ -199,7 +209,10 @@ const ProfileSection = () => {
                         <ListItemButton
                           sx={{ borderRadius: `${customization.borderRadius}px` }}
                           selected={selectedIndex === 0}
-                          onClick={(event) => handleListItemClick(event, 0, '#')}
+                          onClick={(event) => {
+                            handleListItemClick(event, 0, '#');
+                            handleProfile();
+                          }}
                         >
                           <ListItemIcon>
                             <IconSettings stroke={1.5} size="1.3rem" />
