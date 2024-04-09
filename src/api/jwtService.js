@@ -24,7 +24,6 @@ export default class JwtService {
    */
   constructor(jwtOverrideConfig) {
     this.jwtConfig = { ...this.jwtConfig, ...jwtOverrideConfig }; //--- getting based info
-
     //================= Request Interceptor === configuration request before sending HTTP request to the server
     /**
      * @see [axios_interceptors] (https://axios-http.com/docs/interceptors)
@@ -59,6 +58,18 @@ export default class JwtService {
         return { message: 'Oops something was wrong please try later', status: 500 };
       }
     );
+  }
+
+  /**
+   * Parses JSON data.
+   * @param {_data} data The JSON data to parse.
+   * @returns {any|null} The parsed data, or null if input is falsy.
+   */
+  parseData(_data) {
+    if (_data) {
+      return JSON.parse(_data);
+    }
+    return null;
   }
   //----- test server
   test() {
@@ -98,6 +109,29 @@ export default class JwtService {
   }
 
   /**
+   * Retrieves user data from local storage.
+   * @returns {UserData|null} The user data details, or null if not found.
+   */
+  getUserData() {
+    return this.parseData(localStorage.getItem(this.jwtConfig.userData));
+  }
+
+  /**
+   * Sets the user data in local storage.
+   * @param {userData} value - The user data value to set.
+   */
+  setUserData(value) {
+    localStorage.setItem(this.jwtConfig.userData, JSON.stringify(value));
+  }
+
+  /**
+   * Retrieves the role of the user.
+   * @returns {string|null} The role of the user, or null if user data is not found.
+   */
+  getUserRole() {
+    return this.getUserData()?.role?.roleName;
+  }
+  /**
    * Sets the access token in local storage.
    * @param {string} value - The access token value to set.
    */
@@ -113,6 +147,21 @@ export default class JwtService {
     localStorage.setItem(this.jwtConfig.storageRefreshTokenKeyName, value);
   }
 
+  /**
+   * Removes the refresh token from local storage.
+   * @returns {void} No return value.
+   */
+  removeRefreshToken() {
+    return localStorage.removeItem(this.jwtConfig.storageTokenKeyName);
+  }
+
+  /**
+   * Removes the user data from local storage.
+   * @returns {void} No return value.
+   */
+  removeUserData() {
+    return localStorage.removeItem(this.jwtConfig.userData);
+  }
   /**
    * Requests a token refresh by sending a GET request.
    * @returns {Promise} A Promise representing the token refresh request.
@@ -172,12 +221,17 @@ export default class JwtService {
 
   //----- log out
   logout() {
-    return localStorage.removeItem(this.jwtConfig.storageTokenKeyName);
+    this.removeRefreshToken();
+    this.removeUserData();
   }
 
   //----- get the active user (connected user)
   getConnectedUser() {
-    return axios.get(this.jwtConfig.getActiveUserEndPoint);
+    return axios.get(this.jwtConfig.getActiveUserEndPoint, {
+      headers: {
+        Authorization: 'bearer ' + this.getAuthorization()
+      }
+    });
   }
 
   //----- update user password from profile user
@@ -188,5 +242,23 @@ export default class JwtService {
   //----- update user infos from profile user
   updateProfile(...args) {
     return axios.post(this.jwtConfig.updateProfileEndPoint, ...args);
+  }
+
+  accessToGithHub() {
+    return axios.get(this.jwtConfig.accessGitHub, {
+      headers: this.getAuthorization()
+    });
+  }
+
+  connectToGitHub() {
+    return axios.get(this.jwtConfig.authGitHub, {
+      headers: this.getAuthorization()
+    });
+  }
+
+  getPRoviderList() {
+    return axios.get(this.jwtConfig.providerList, {
+      headers: this.getAuthorization()
+    });
   }
 }

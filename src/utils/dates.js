@@ -22,3 +22,4 @@ const monthsOfYear = [
 export function CurrentMonth() {
   return monthsOfYear[month + 1] || '';
 }
+

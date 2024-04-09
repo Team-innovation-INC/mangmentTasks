@@ -10,6 +10,7 @@ import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
 
 // assets
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
+import { useNavigate } from 'react-router';
 
 // styles
 const CardWrapper = styled(MainCard)(({ theme }) => ({
@@ -43,50 +44,55 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const TotalIncomeDarkCard = ({ isLoading }) => {
   const theme = useTheme();
-
+  const navigate = useNavigate();
+  function navigateTasks() {
+    navigate('/tasks/list');
+  }
   return (
     <>
       {isLoading ? (
         <TotalIncomeCard />
       ) : (
-        <CardWrapper border={false} content={false}>
-          <Box sx={{ p: 2 }}>
-            <List sx={{ py: 0 }}>
-              <ListItem alignItems="center" disableGutters sx={{ py: 0 }}>
-                <ListItemAvatar>
-                  <Avatar
-                    variant="rounded"
+        <button style={{ width: '100%', outline: 'none', border: 'none', cursor: 'pointer' }} onClick={navigateTasks}>
+          <CardWrapper border={false} content={false}>
+            <Box sx={{ p: 2 }}>
+              <List sx={{ py: 0 }}>
+                <ListItem alignItems="center" disableGutters sx={{ py: 0 }}>
+                  <ListItemAvatar>
+                    <Avatar
+                      variant="rounded"
+                      sx={{
+                        ...theme.typography.commonAvatar,
+                        ...theme.typography.largeAvatar,
+                        backgroundColor: theme.palette.primary[800],
+                        color: '#fff'
+                      }}
+                    >
+                      <TableChartOutlinedIcon fontSize="inherit" />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
                     sx={{
-                      ...theme.typography.commonAvatar,
-                      ...theme.typography.largeAvatar,
-                      backgroundColor: theme.palette.primary[800],
-                      color: '#fff'
+                      py: 0,
+                      mt: 0.45,
+                      mb: 0.45
                     }}
-                  >
-                    <TableChartOutlinedIcon fontSize="inherit" />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  sx={{
-                    py: 0,
-                    mt: 0.45,
-                    mb: 0.45
-                  }}
-                  primary={
-                    <Typography variant="h4" sx={{ color: '#fff' }}>
-                      $203k
-                    </Typography>
-                  }
-                  secondary={
-                    <Typography variant="subtitle2" sx={{ color: 'primary.light', mt: 0.25 }}>
-                      Total Income
-                    </Typography>
-                  }
-                />
-              </ListItem>
-            </List>
-          </Box>
-        </CardWrapper>
+                    primary={
+                      <Typography variant="h4" sx={{ color: '#fff' }}>
+                        10
+                      </Typography>
+                    }
+                    secondary={
+                      <Typography variant="subtitle2" sx={{ color: 'primary.light', mt: 0.25 }}>
+                        tasks
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              </List>
+            </Box>
+          </CardWrapper>
+        </button>
       )}
     </>
   );

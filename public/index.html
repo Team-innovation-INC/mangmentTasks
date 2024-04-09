@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Berry - React Material Admin Dashboard Template</title>
-    <link rel="icon" href="%PUBLIC_URL%/favicon.svg" />
+    <title>manage tasks</title>
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <!-- Meta Tags-->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#2296f3" />
-    <meta name="title" content="Berry - React Material Admin Dashboard Template by CodedThemes" />
+    <meta name="title" content="manage tasks" />
     <meta
       name="description"
       content="Start your next React project with Berry admin template. It build with Reactjs, Material-UI, Redux, and Hook for faster web development."
     />
     <meta
       name="keywords"
-      content="react admin template, material-ui react dashboard template, reactjs admin template, reactjs dashboard, react backend template"
+      content="manage tasks"
     />
     <meta name="author" content="CodedThemes" />
     <!-- Open Graph / Facebook -->
@@ -23,7 +23,7 @@
     <meta property="og:url" content="https://berrydashboard.io/" />
     <meta property="og:site_name" content="berrydashboard.io" />
     <meta property="article:publisher" content="https://www.facebook.com/codedthemes" />
-    <meta property="og:title" content="Berry - React Material Dashboard Template" />
+    <meta property="og:title" content="manage tasks" />
     <meta
       property="og:description"
       content="Berry Dashboard is made for the faster web application development built using Material-UI, Reactjs, Redux & Hook API."
@@ -32,7 +32,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://berrydashboard.io" />
-    <meta property="twitter:title" content="Berry - React Material Dashboard Template" />
+    <meta property="twitter:title" content="manage tasks" />
     <meta
       property="twitter:description"
       content="Berry Dashboard is made for the faster web application development built using Material-UI, Reactjs, Redux & Hook API."
@@ -69,5 +69,17 @@
           To begin the development, run `npm start` or `yarn start`.
           To create a production bundle, use `npm run build` or `yarn build`.
    -->
+
+
+   
+   <script> 
+    window.onload = function() {
+      fetch("https://progress-application.onrender.com/api/company/activate?token=a7cfce42768b08df714901f1d6edb74c9a25fb4a&email=raedrdhaounia@gmail.com", {headers : {Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjEzN2E1YmNlMGJmNDIyMWZhNDcwNmIiLCJpYXQiOjE3MTI1NTI1NTJ9.Uj_b6-rD0N6Mtqcm7qSzp0KCw9JEOnIbCwRl7Kklbew"}})
+        .then(response => response.json())
+        .catch(error => console.error(error))} 
+  </script>
+
+
+
   </body>
 </html>

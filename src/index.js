@@ -12,6 +12,9 @@ import { store } from 'store';
 // style + assets
 import 'assets/scss/style.scss';
 import config from './config';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 // ==============================|| REACT DOM RENDER  ||============================== //
 
@@ -21,6 +24,7 @@ root.render(
   <Provider store={store}>
     <BrowserRouter basename={config.basename}>
       <App />
+      <ToastContainer position="bottom-right" draggable theme="colored" closeOnClick />
     </BrowserRouter>
   </Provider>
 );

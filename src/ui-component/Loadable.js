@@ -7,7 +7,7 @@ import Loader from './Loader';
 
 const Loadable = (Component) => (props) =>
   (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader _color="primary" />}>
       <Component {...props} />
     </Suspense>
   );

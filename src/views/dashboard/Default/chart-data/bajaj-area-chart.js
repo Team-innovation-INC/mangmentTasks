@@ -1,40 +1,46 @@
 // ===========================|| DASHBOARD - BAJAJ AREA CHART ||=========================== //
 
 const chartData = {
-  type: 'area',
-  height: 95,
+  type: 'bar',
   options: {
     chart: {
-      id: 'support-chart',
-      sparkline: {
-        enabled: true
+      type: 'bar',
+      height: 550
+    },
+    plotOptions: {
+      bar: {
+        borderRadius: 15,
+        horizontal: true
       }
     },
     dataLabels: {
-      enabled: false
+      enabled: true
     },
-    stroke: {
-      curve: 'smooth',
-      width: 1
-    },
-    tooltip: {
-      fixed: {
-        enabled: false
-      },
-      x: {
-        show: false
-      },
-      y: {
-        title: 'Ticket '
-      },
-      marker: {
-        show: false
+    xaxis: {
+      categories: ['GitHub', 'Jira', 'Maga'],
+      title: {
+        text: 'integrations '
       }
-    }
+    },
+    yaxis: {
+      title: {
+        text: 'application'
+      }
+    },
+    colors: ['#5e35b1', '#1e88e5', '#90CAF9D8 ']
   },
   series: [
     {
-      data: [0, 15, 10, 50, 30, 40, 25]
+      name: 'Numbers',
+      data: [200, 230, 448]
+    },
+    {
+      name: 'Related',
+      data: [200, 330, 548]
+    },
+    {
+      name: 'Tasks',
+      data: [400, 430, 448]
     }
   ]
 };

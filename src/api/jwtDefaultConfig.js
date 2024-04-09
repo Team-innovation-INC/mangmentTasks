@@ -1,6 +1,6 @@
 // ** Auth Endpoints
 
-const basedUrl = 'https://swagger-playpro-site.onrender.com'; // -- just for test next will be involved to the environment variables
+const basedUrl = 'https://progress-application.onrender.com'; // -- just for test next will be involved to the environment variables
 
 const endPoints = {
   // -- test
@@ -8,8 +8,11 @@ const endPoints = {
   // -- auth endPoints
   loginEndpoint: '/api/auth/sign-in',
   registerEndpoint: '/api/auth/sign-up',
-  getActiveUserEndPoint: '/api/auth/active',
-  logoutEndPoint: '/api/auth/logout'
+  getActiveUserEndPoint: '/api/client/current-information',
+  logoutEndPoint: '/api/auth/logout',
+  accessGitHub: '/api/provider/access/github',
+  authGitHub: '/api/provider/auth/github',
+  providerList: '/api/provider/list'
 };
 
 function getEndPoints() {
@@ -24,7 +27,8 @@ const tokenType = 'Bearer';
 
 const StorageToken = {
   storageTokenKeyName: 'accessToken',
-  storageRefreshTokenKeyName: 'refreshToken'
+  storageRefreshTokenKeyName: 'refreshToken',
+  userData: 'userData'
 };
 export default {
   ...getEndPoints(),

@@ -17,6 +17,7 @@ const waiter = {
   title: 'developer',
   caption: 'this for the developer control space ',
   type: 'group',
+  role: ['user', 'admin'],
   children: [
     {
       id: 'developer-progress',
@@ -25,7 +26,8 @@ const waiter = {
       type: 'item',
       url: '/developer/progress',
       icon: icons.IconBrandProducthunt,
-      breadcrumbs: false
+      breadcrumbs: false,
+      role: ['user', 'admin']
     },
     {
       id: 'developer-calendar',
@@ -34,7 +36,8 @@ const waiter = {
       type: 'item',
       url: '/developer/calendar',
       icon: icons.IconCalendar,
-      breadcrumbs: false
+      breadcrumbs: false,
+      role: ['user']
     },
     {
       id: 'developer-document',
@@ -43,7 +46,8 @@ const waiter = {
       url: '/developer/document',
       caption: 'space for document management',
       icon: icons.IconFileInvoice,
-      breadcrumbs: false
+      breadcrumbs: false,
+      role: ['user']
     }
   ]
 };

@@ -1,5 +1,3 @@
-// ===========================|| DASHBOARD - TOTAL ORDER MONTH CHART ||=========================== //
-
 const chartData = {
   type: 'line',
   height: 90,
@@ -15,7 +13,7 @@ const chartData = {
     colors: ['#fff'],
     fill: {
       type: 'solid',
-      opacity: 1
+      opacity: 1 
     },
     stroke: {
       curve: 'smooth',
@@ -23,7 +21,12 @@ const chartData = {
     },
     yaxis: {
       min: 0,
-      max: 100
+      max: 100,
+      labels: {
+        formatter: function(value) {
+          return value + '%';
+        }
+      }
     },
     tooltip: {
       theme: 'dark',
@@ -31,20 +34,23 @@ const chartData = {
         enabled: false
       },
       x: {
-        show: false
+        show: true
       },
       y: {
-        title: 'Total Order'
+        title: '%'
       },
       marker: {
         show: false
+      },
+      formatter: function(val) {
+        return val.toFixed(2) + '%';
       }
     }
   },
   series: [
     {
-      name: 'series1',
-      data: [45, 66, 41, 89, 25, 44, 9, 54]
+      data: [45, 66, 41, 89, 25, 44, 9, 54],
+      labels: ['Point 1', 'Point 2', 'Point 3', 'Point 4', 'Point 5', 'Point 6', 'Point 7', 'Point 8']
     }
   ]
 };

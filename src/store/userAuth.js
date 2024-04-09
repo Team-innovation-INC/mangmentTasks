@@ -12,18 +12,21 @@ export const initialState = {
 const authReducer = async (state = initialState, action) => {
   let user = {};
   let isActive = false;
-  console.log(action.type === actionTypes.SINGING, action);
-
   switch (action.type) {
     case actionTypes.SINGING:
       try {
         const response = await WebService().login(action.payload);
+        console.log(response, "response")
         if (response.status === 200) {
           user = response.data.user;
           isActive = true;
         }
+        WebService().setToken(response.data.token);
+        WebService().setUserData(response.data.user);
+        window.location.replace('/dashboard');
       } catch (error) {
-        state.userDetails = {};
+        console.log(error)
+        // state.userDetails = {};
       }
       return {
         ...state,
@@ -38,7 +41,8 @@ const authReducer = async (state = initialState, action) => {
           isActive = true;
         }
       } catch (error) {
-        state.userDetails = {};
+        console.log(error, "error")
+        //state.userDetails = {};
       }
       return {
         ...state,

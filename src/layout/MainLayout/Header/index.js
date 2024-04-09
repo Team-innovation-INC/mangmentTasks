@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Box, ButtonBase } from '@mui/material';
+import { Avatar, Box, ButtonBase, Typography } from '@mui/material';
 
 // project imports
 import LogoSection from '../LogoSection';
@@ -11,12 +11,13 @@ import ProfileSection from './ProfileSection';
 
 // assets
 import { IconMenu2 } from '@tabler/icons';
+import WebService from 'api/useJwt';
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
 const Header = ({ handleLeftDrawerToggle }) => {
   const theme = useTheme();
-
+  const userDetails = WebService().getUserData();
   return (
     <>
       {/* logo & toggler button */}
@@ -24,13 +25,18 @@ const Header = ({ handleLeftDrawerToggle }) => {
         sx={{
           width: 228,
           display: 'flex',
+          justifyContent: 'space-between',
+          gap: 4,
           [theme.breakpoints.down('md')]: {
             width: 'auto'
           }
         }}
       >
-        <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
-          <LogoSection />
+        <Box component="span" sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', alignItems: 'center', gap: 1 }}>
+          <LogoSection src={userDetails?.company?.pic} />
+          <Typography variant="h6" color="secondary">
+            {userDetails?.company?.companyName}
+          </Typography>
         </Box>
         <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
           <Avatar
