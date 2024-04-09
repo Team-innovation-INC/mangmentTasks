@@ -1,6 +1,6 @@
 // ** Auth Endpoints
 
-const basedUrl = 'http://localhost:5000'; // -- just for test next will be involved to the environment variables
+const basedUrl = 'https://progress-application.onrender.com'; // -- just for test next will be involved to the environment variables
 
 const endPoints = {
   // -- test
