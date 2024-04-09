@@ -16,6 +16,7 @@ const authReducer = async (state = initialState, action) => {
     case actionTypes.SINGING:
       try {
         const response = await WebService().login(action.payload);
+        console.log(response, "response")
         if (response.status === 200) {
           user = response.data.user;
           isActive = true;
@@ -24,7 +25,8 @@ const authReducer = async (state = initialState, action) => {
         WebService().setUserData(response.data.user);
         window.location.replace('/dashboard');
       } catch (error) {
-        state.userDetails = {};
+        console.log(error)
+        // state.userDetails = {};
       }
       return {
         ...state,
@@ -39,7 +41,8 @@ const authReducer = async (state = initialState, action) => {
           isActive = true;
         }
       } catch (error) {
-        state.userDetails = {};
+        console.log(error, "error")
+        //state.userDetails = {};
       }
       return {
         ...state,

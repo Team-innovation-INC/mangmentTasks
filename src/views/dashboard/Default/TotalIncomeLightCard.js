@@ -10,6 +10,7 @@ import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
 
 // assets
 import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
+import { useNavigate } from 'react-router';
 
 // styles
 const CardWrapper = styled(MainCard)(({ theme }) => ({
@@ -41,52 +42,57 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const TotalIncomeLightCard = ({ isLoading }) => {
   const theme = useTheme();
-
+  const navigate = useNavigate();
+  function navigateMembers() {
+    navigate('/members/list');
+  }
   return (
     <>
       {isLoading ? (
         <TotalIncomeCard />
       ) : (
-        <CardWrapper border={false} content={false}>
-          <Box sx={{ p: 2 }}>
-            <List sx={{ py: 0 }}>
-              <ListItem alignItems="center" disableGutters sx={{ py: 0 }}>
-                <ListItemAvatar>
-                  <Avatar
-                    variant="rounded"
-                    sx={{
-                      ...theme.typography.commonAvatar,
-                      ...theme.typography.largeAvatar,
-                      backgroundColor: theme.palette.warning.light,
-                      color: theme.palette.warning.dark
-                    }}
-                  >
-                    <StorefrontTwoToneIcon fontSize="inherit" />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  sx={{
-                    py: 0,
-                    mt: 0.45,
-                    mb: 0.45
-                  }}
-                  primary={<Typography variant="h4">$203k</Typography>}
-                  secondary={
-                    <Typography
-                      variant="subtitle2"
+        <button style={{ width: '100%', outline: 'none', border: 'none', cursor: 'pointer' }} onClick={navigateMembers}>
+          <CardWrapper border={false} content={false}>
+            <Box sx={{ p: 2 }}>
+              <List sx={{ py: 0 }}>
+                <ListItem alignItems="center" disableGutters sx={{ py: 0 }}>
+                  <ListItemAvatar>
+                    <Avatar
+                      variant="rounded"
                       sx={{
-                        color: theme.palette.grey[500],
-                        mt: 0.5
+                        ...theme.typography.commonAvatar,
+                        ...theme.typography.largeAvatar,
+                        backgroundColor: theme.palette.warning.light,
+                        color: theme.palette.warning.dark
                       }}
                     >
-                      Total Income
-                    </Typography>
-                  }
-                />
-              </ListItem>
-            </List>
-          </Box>
-        </CardWrapper>
+                      <StorefrontTwoToneIcon fontSize="inherit" />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    sx={{
+                      py: 0,
+                      mt: 0.45,
+                      mb: 0.45
+                    }}
+                    primary={<Typography variant="h4">1</Typography>}
+                    secondary={
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          color: theme.palette.grey[500],
+                          mt: 0.5
+                        }}
+                      >
+                        members
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              </List>
+            </Box>
+          </CardWrapper>
+        </button>
       )}
     </>
   );

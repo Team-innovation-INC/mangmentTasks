@@ -13,6 +13,18 @@ const MembersRoutes = {
     {
       path: '',
       element: <div>members</div>
+    },
+    {
+      path: 'add',
+      element: <div>add member</div>
+    },
+    {
+      path: 'list',
+      element: <div>members list</div>
+    },
+    {
+      path: 'roles',
+      element: <div>members roles</div>
     }
   ]
 };

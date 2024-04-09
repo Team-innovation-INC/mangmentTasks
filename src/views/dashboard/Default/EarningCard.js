@@ -3,21 +3,22 @@ import { useState } from 'react';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
-import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Avatar, Box, Button, Grid, Menu, MenuItem, Tooltip, Typography } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 
 // assets
-import EarningIcon from 'assets/images/icons/earning.svg';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined';
 import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined';
 import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined';
 import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
-
+import WebService from 'api/useJwt';
+import SummarizeIcon from '@mui/icons-material/Summarize';
+import { useNavigate } from 'react-router';
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.dark,
   color: '#fff',
@@ -58,7 +59,8 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const EarningCard = ({ isLoading }) => {
   const theme = useTheme();
-
+  const navigate = useNavigate();
+  const userDetails = WebService().getUserData();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -67,6 +69,10 @@ const EarningCard = ({ isLoading }) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const navigateStatistics = () => {
+    navigate('/dashboard/analyse');
   };
 
   return (
@@ -80,17 +86,21 @@ const EarningCard = ({ isLoading }) => {
               <Grid item>
                 <Grid container justifyContent="space-between">
                   <Grid item>
-                    <Avatar
-                      variant="rounded"
-                      sx={{
-                        ...theme.typography.commonAvatar,
-                        ...theme.typography.largeAvatar,
-                        backgroundColor: theme.palette.secondary[800],
-                        mt: 1
-                      }}
-                    >
-                      <img src={EarningIcon} alt="Notification" />
-                    </Avatar>
+                    <Tooltip title="click for analyst">
+                      <Button onClick={navigateStatistics}>
+                        <Avatar
+                          variant="rounded"
+                          sx={{
+                            ...theme.typography.commonAvatar,
+                            ...theme.typography.largeAvatar,
+                            backgroundColor: theme.palette.secondary[800],
+                            mt: 1
+                          }}
+                        >
+                          <SummarizeIcon style={{ color: 'white' }} />
+                        </Avatar>
+                      </Button>
+                    </Tooltip>
                   </Grid>
                   <Grid item>
                     <Avatar
@@ -143,7 +153,9 @@ const EarningCard = ({ isLoading }) => {
               <Grid item>
                 <Grid container alignItems="center">
                   <Grid item>
-                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>$500.00</Typography>
+                    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                      {userDetails.company.companyName}
+                    </Typography>
                   </Grid>
                   <Grid item>
                     <Avatar
@@ -167,7 +179,7 @@ const EarningCard = ({ isLoading }) => {
                     color: theme.palette.secondary[200]
                   }}
                 >
-                  Total Earning
+                  Full Report
                 </Typography>
               </Grid>
             </Grid>
