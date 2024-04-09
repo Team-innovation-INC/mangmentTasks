@@ -14,10 +14,10 @@ const other = {
       id: 'sample-page',
       title: 'Sample Page',
       type: 'item',
-      url: 'https://progress-e7yl.onrender.com/login',
+      url: 'https://progress-e7yl.onrender.com',
       icon: icons.IconBrandChrome,
       caption: 'this is the main project extension idea',
-      breadcrumbs: false,
+      breadcrumbs: true,
       external: true
     },
     {
@@ -25,7 +25,7 @@ const other = {
       title: 'source code',
       type: 'item',
       caption: 'this is the github source code link',
-      url: 'https://github.com/Team-innovation-INC/mangmentTasks',
+      url: 'https://github.com/Team-innovation-INC',
       icon: icons.IconCode,
       external: true,
       target: true

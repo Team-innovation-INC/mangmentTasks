@@ -10,7 +10,9 @@ const endPoints = {
   registerEndpoint: '/api/auth/sign-up',
   getActiveUserEndPoint: '/api/client/current-information',
   logoutEndPoint: '/api/auth/logout',
-  accessGitHub: '/api/provider/access/github'
+  accessGitHub: '/api/provider/access/github',
+  authGitHub: '/api/provider/auth/github',
+  providerList: '/api/provider/list'
 };
 
 function getEndPoints() {

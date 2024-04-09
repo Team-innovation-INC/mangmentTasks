@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
-import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
+import { Avatar, Box, Button, Grid, Tooltip, Typography } from '@mui/material';
 
 // third-party
 import Chart from 'react-apexcharts';
@@ -18,6 +18,7 @@ import ChartDataYear from './chart-data/total-order-year-line-chart';
 // assets
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import { useNavigate } from 'react-router';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
@@ -65,12 +66,14 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const TotalOrderLineChartCard = ({ isLoading }) => {
   const theme = useTheme();
-
+  const navigate = useNavigate();
   const [timeValue, setTimeValue] = useState(false);
   const handleChangeTime = (event, newValue) => {
     setTimeValue(newValue);
   };
-
+  function navigateProgress() {
+    navigate(`/progress?date=${timeValue ? 'month' : 'year'}`);
+  }
   return (
     <>
       {isLoading ? (
@@ -82,18 +85,22 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
               <Grid item>
                 <Grid container justifyContent="space-between">
                   <Grid item>
-                    <Avatar
-                      variant="rounded"
-                      sx={{
-                        ...theme.typography.commonAvatar,
-                        ...theme.typography.largeAvatar,
-                        backgroundColor: theme.palette.primary[800],
-                        color: '#fff',
-                        mt: 1
-                      }}
-                    >
-                      <LocalMallOutlinedIcon fontSize="inherit" />
-                    </Avatar>
+                    <Tooltip title="click for details">
+                      <Button onClick={navigateProgress}>
+                        <Avatar
+                          variant="rounded"
+                          sx={{
+                            ...theme.typography.commonAvatar,
+                            ...theme.typography.largeAvatar,
+                            backgroundColor: theme.palette.primary[800],
+                            color: '#fff',
+                            mt: 1
+                          }}
+                        >
+                          <LocalMallOutlinedIcon fontSize="inherit" />
+                        </Avatar>
+                      </Button>
+                    </Tooltip>
                   </Grid>
                   <Grid item>
                     <Button
@@ -123,9 +130,9 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                     <Grid container alignItems="center">
                       <Grid item>
                         {timeValue ? (
-                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>$108</Typography>
+                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>30%</Typography>
                         ) : (
-                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>$961</Typography>
+                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>80%</Typography>
                         )}
                       </Grid>
                       <Grid item>
@@ -148,7 +155,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                             color: theme.palette.primary[200]
                           }}
                         >
-                          Total Order
+                          Progress project
                         </Typography>
                       </Grid>
                     </Grid>

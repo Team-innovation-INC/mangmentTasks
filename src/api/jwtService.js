@@ -249,4 +249,16 @@ export default class JwtService {
       headers: this.getAuthorization()
     });
   }
+
+  connectToGitHub() {
+    return axios.get(this.jwtConfig.authGitHub, {
+      headers: this.getAuthorization()
+    });
+  }
+
+  getPRoviderList() {
+    return axios.get(this.jwtConfig.providerList, {
+      headers: this.getAuthorization()
+    });
+  }
 }

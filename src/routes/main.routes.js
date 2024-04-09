@@ -8,8 +8,11 @@ import MainLayout from 'layout/MainLayout';
 const MainRoutes = {
   path: '/',
   element: <MainLayout />,
-  requiredRole: 'user',
   children: [
+    {
+      path: '',
+      element: <div>home</div>
+    },
     {
       path: '*',
       element: <div>not found</div>
