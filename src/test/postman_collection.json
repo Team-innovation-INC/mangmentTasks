@@ -1,0 +1,59 @@
+{
+  "info": {
+    "_postman_id": "your-postman-id",
+    "name": "Test progress API connection",
+    "description": "Collection for testing the progress related to the manage tasks application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "variables": [
+      {
+        "id": "baseUrl",
+        "value": "https://progress-develop-server.onrender.com",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Test GET /test endpoint",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "*/*"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/test",
+          "protocol": "https",
+          "host": ["progress-develop-server", "onrender", "com"],
+          "path": ["test"]
+        }
+      },
+      "response": [
+        {
+          "name": "progress server health care work as expected",
+          "status": "OK",
+          "body": "progress server health care work as expected"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"active server check\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"main router works as expected\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"progress server health care work as expected\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
