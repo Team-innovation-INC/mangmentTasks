@@ -45,7 +45,7 @@ const ConditionalButton = ({ type, loadingProviders, handleConnect, integrationS
 function ProviderCategory({ category, type, handleConnect }) {
   return (
     <MainCard title={type} contentSX={{ display: 'flex', gap: 2, flexWarp: 'warp', overflowX: 'scroll' }}>
-      {category.map((provider) => {
+      {category.map(provider => {
         return (
           <div key={provider.type} style={{ minWidth: 200 }}>
             <Provider provider={provider} handleConnect={handleConnect} />
@@ -105,7 +105,7 @@ const IntegrationList = () => {
     fetchIntegrationList();
   }, []);
 
-  const handleConnect = async (_providerType) => {
+  const handleConnect = async _providerType => {
     setLoadingProviders(_providerType);
     try {
       if (_providerType === 'GitHub') {
@@ -142,7 +142,7 @@ const IntegrationList = () => {
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
               {/* Map through providers and render a card for each */}
-              {Object.keys(providersByCategories).map((type) => (
+              {Object.keys(providersByCategories).map(type => (
                 <ProviderCategory category={providersByCategories[type]} handleConnect={handleConnect} type={type} key={type} />
               ))}
             </div>

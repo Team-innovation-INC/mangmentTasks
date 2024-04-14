@@ -45,7 +45,7 @@ const FirebaseRegister = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-  const customization = useSelector((state) => state.customization);
+  const customization = useSelector(state => state.customization);
   const [showPassword, setShowPassword] = useState(false);
   const [checked, setChecked] = useState(true);
 
@@ -60,11 +60,11 @@ const FirebaseRegister = ({ ...others }) => {
     setShowPassword(!showPassword);
   };
 
-  const handleMouseDownPassword = (event) => {
+  const handleMouseDownPassword = event => {
     event.preventDefault();
   };
 
-  const changePassword = (value) => {
+  const changePassword = value => {
     const temp = strengthIndicator(value);
     setStrength(temp);
     setLevel(strengthColor(temp));
@@ -226,7 +226,7 @@ const FirebaseRegister = ({ ...others }) => {
                 name="password"
                 label="Password"
                 onBlur={handleBlur}
-                onChange={(e) => {
+                onChange={e => {
                   handleChange(e);
                   changePassword(e.target.value);
                 }}
@@ -273,7 +273,7 @@ const FirebaseRegister = ({ ...others }) => {
               <Grid item>
                 <FormControlLabel
                   control={
-                    <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
+                    <Checkbox checked={checked} onChange={event => setChecked(event.target.checked)} name="checked" color="primary" />
                   }
                   label={
                     <Typography variant="subtitle1">

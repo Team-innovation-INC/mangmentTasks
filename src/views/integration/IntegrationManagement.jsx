@@ -44,10 +44,10 @@ const ConditionalButton = ({ type, loadingProviders, handleConnect, integrationS
 
 function ProviderCategory({ category, type, handleConnect }) {
   return (
-    <MainCard title={type} contentSX={{ display: 'flex', gap: 2, flexWarp:"warp", overflowX: "scroll" }}>
-      {category.map((provider) => {
+    <MainCard title={type} contentSX={{ display: 'flex', gap: 2, flexWarp: 'warp', overflowX: 'scroll' }}>
+      {category.map(provider => {
         return (
-          <div key={provider.type} style={{minWidth: 200}} >
+          <div key={provider.type} style={{ minWidth: 200 }}>
             <Provider provider={provider} handleConnect={handleConnect} />
           </div>
         );
@@ -59,9 +59,9 @@ function ProviderCategory({ category, type, handleConnect }) {
 function Provider({ provider, loadingProviders, handleConnect }) {
   console.log(provider, 'providerprovider');
   const { type, providerId, integrationStatus } = provider;
-  console.log(type, "type")
+  console.log(type, 'type');
   return (
-    <MainCard contentSX={{ display: 'flex', flexDirection: 'column', gap: 2, alignItems: "center" }} title={type}>
+    <MainCard contentSX={{ display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center' }} title={type}>
       {/* Render icon based on provider type */}
       {type === 'GitHub' && <img src={githubIcon} alt="github-icon" width={80} height={80} />}
       {type === 'Jira' && <img src={jiraIcon} alt="jira-icon" width={80} height={80} />}
@@ -105,7 +105,7 @@ const IntegrationList = () => {
     fetchIntegrationList();
   }, []);
 
-  const handleConnect = async (_providerType) => {
+  const handleConnect = async _providerType => {
     setLoadingProviders(_providerType);
     try {
       if (_providerType === 'GitHub') {
@@ -126,23 +126,23 @@ const IntegrationList = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-      <MainCard title={`integration management`} style={{  width: "100%"}}>
+      <MainCard title={`integration management`} style={{ width: '100%' }}>
         <Typography variant="body2">Welcome for the most important part of the application that you can make integration with</Typography>
-        <MainCard >
+        <MainCard>
           {loading || loadingProviders ? (
             <>
               {/* Render Skeleton placeholders for loading */}
               {Array.from({ length: 3 }).map((_, index) => (
-                <div key={index} style={{ display: 'flex', flexDirection: 'column', gap:5 }}>
-                  <Skeleton variant="rectangular" width={"100%"} height={50} />
-                  <Skeleton variant="rectangular" width={"100%"} height={100} />
+                <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+                  <Skeleton variant="rectangular" width={'100%'} height={50} />
+                  <Skeleton variant="rectangular" width={'100%'} height={100} />
                 </div>
               ))}
             </>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
               {/* Map through providers and render a card for each */}
-              {Object.keys(providersByCategories).map((type) => {
+              {Object.keys(providersByCategories).map(type => {
                 return <ProviderCategory category={providersByCategories[type]} handleConnect={handleConnect} type={type} key={type} />;
               })}
             </div>

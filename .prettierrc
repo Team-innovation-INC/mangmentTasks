@@ -5,5 +5,5 @@
   "trailingComma": "none",
   "tabWidth": 2,
   "useTabs": false,
-  "arrowParens": "none"
+  "arrowParens": "avoid"
 }

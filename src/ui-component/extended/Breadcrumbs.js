@@ -42,9 +42,9 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
   const [main, setMain] = useState();
   const [item, setItem] = useState();
   // set active item state
-  const getCollapse = (menu) => {
+  const getCollapse = menu => {
     if (menu.children) {
-      menu.children.filter((collapse) => {
+      menu.children.filter(collapse => {
         if (collapse.type && collapse.type === 'collapse') {
           getCollapse(collapse);
         } else if (collapse.type && collapse.type === 'item' && (collapse.role === undefined || collapse.role.includes(userRole))) {
@@ -59,7 +59,7 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
   };
 
   useEffect(() => {
-    navigation?.items?.map((menu) => {
+    navigation?.items?.map(menu => {
       if (menu.type && menu.type === 'group' && menu.role?.includes(userRole) === false) {
         getCollapse(menu);
       }

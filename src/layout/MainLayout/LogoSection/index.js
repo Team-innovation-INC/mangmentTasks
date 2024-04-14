@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 // ==============================|| MAIN LOGO ||============================== //
 
 const LogoSection = ({ src }) => {
-  const defaultId = useSelector((state) => state.customization.defaultId);
+  const defaultId = useSelector(state => state.customization.defaultId);
   const dispatch = useDispatch();
 
   const renderLogo = () => {

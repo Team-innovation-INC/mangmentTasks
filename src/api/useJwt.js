@@ -2,7 +2,7 @@
 
 /**
  *  JWT Service Import
- */ 
+ */
 import JwtService from './jwtService';
 
 // ** Export Service as useJwt

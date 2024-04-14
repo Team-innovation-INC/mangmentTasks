@@ -11,7 +11,7 @@ import WebService from 'api/useJwt';
 const MenuList = () => {
   const userRole = WebService().getUserData()?.role?.roleName;
 
-  const navItems = menuItem.items.map((item) => {
+  const navItems = menuItem.items.map(item => {
     switch (item.type) {
       case 'group':
         return (item.role === undefined || item.role.includes(userRole)) && <NavGroup key={item.id} item={item} />;

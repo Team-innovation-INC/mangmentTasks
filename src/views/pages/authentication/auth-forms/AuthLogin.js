@@ -45,7 +45,7 @@ const FirebaseLogin = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-  const customization = useSelector((state) => state.customization);
+  const customization = useSelector(state => state.customization);
   const [checked, setChecked] = useState(true);
 
   const googleHandler = async () => {
@@ -54,7 +54,7 @@ const FirebaseLogin = ({ ...others }) => {
       const response = (await WebService().loginGoogle()).data;
       if (response.success) {
         toast.success(response.message);
-        window.open(response.data.authorizeUrl, "_top");
+        window.open(response.data.authorizeUrl, '_top');
       }
       console.log(response);
     } catch (error) {
@@ -67,7 +67,7 @@ const FirebaseLogin = ({ ...others }) => {
     setShowPassword(!showPassword);
   };
 
-  const handleMouseDownPassword = (event) => {
+  const handleMouseDownPassword = event => {
     event.preventDefault();
   };
 
@@ -215,9 +215,7 @@ const FirebaseLogin = ({ ...others }) => {
             </FormControl>
             <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
               <FormControlLabel
-                control={
-                  <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
-                }
+                control={<Checkbox checked={checked} onChange={event => setChecked(event.target.checked)} name="checked" color="primary" />}
                 label="Remember me"
               />
               <a href="https://progress-e7yl.onrender.com" target="_blank" rel="noreferrer">

@@ -65,7 +65,7 @@ const MobileSearch = ({ value, setValue, popupState }) => {
     <OutlineInputStyle
       id="input-search-header"
       value={value}
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       placeholder="Search"
       startAdornment={
         <InputAdornment position="start">
@@ -123,7 +123,7 @@ const SearchSection = () => {
     <>
       <Box sx={{ display: { xs: 'block', md: 'none' } }}>
         <PopupState variant="popper" popupId="demo-popup-popper">
-          {(popupState) => (
+          {popupState => (
             <>
               <Box sx={{ ml: 2 }}>
                 <ButtonBase sx={{ borderRadius: '12px' }}>
@@ -165,7 +165,7 @@ const SearchSection = () => {
         <OutlineInputStyle
           id="input-search-header"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={e => setValue(e.target.value)}
           placeholder="Search"
           startAdornment={
             <InputAdornment position="start">

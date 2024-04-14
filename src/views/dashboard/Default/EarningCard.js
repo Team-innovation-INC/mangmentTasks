@@ -63,7 +63,7 @@ const EarningCard = ({ isLoading }) => {
   const userDetails = WebService().getUserData();
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClick = (event) => {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
 

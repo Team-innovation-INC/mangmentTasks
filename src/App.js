@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 // ==============================|| APP ||============================== //
 
 const App = () => {
-  const customization = useSelector((state) => state.customization);
+  const customization = useSelector(state => state.customization);
   useEffect(() => {
     async function fetchUserDetails() {
       try {

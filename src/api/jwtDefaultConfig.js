@@ -1,5 +1,5 @@
 // ** Auth Endpoints
-/** 
+/**
  * @important !!!!!!
  * just for test next will be involved to the environment variables
  */
