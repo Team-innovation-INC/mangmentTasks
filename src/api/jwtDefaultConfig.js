@@ -1,19 +1,51 @@
 // ** Auth Endpoints
-
-const basedUrl = 'http://localhost:5000'; // -- just for test next will be involved to the environment variables
+/** 
+ * @important !!!!!!
+ * just for test next will be involved to the environment variables
+ */
+const basedUrl = 'http://localhost:5000';
 
 const endPoints = {
-  // -- test
+  /**
+   *  ----- -- SERVER TEST ENDPOINT --
+   */
   test: '/test',
-  // -- auth endPoints
+
+  /**
+   *  ----- -- AUTHENTICATION USER ENDPOINT --
+   */
   loginEndpoint: '/api/auth/sign-in',
   registerEndpoint: '/api/auth/sign-up',
-  getActiveUserEndPoint: '/api/client/current-information',
   logoutEndPoint: '/api/auth/logout',
-  accessGitHub: '/api/provider/access/github',
-  authGitHub: '/api/provider/auth/github',
-  providerList: '/api/provider/list',
-  accessGoogle: '/api/auth/sign-in/google'
+  accessGoogle: '/api/auth/sign-in/google',
+
+  /**
+   *  -----   -- ACTIVE USER --
+   */
+  getActiveUserEndPoint: '/api/client/current-information',
+  getRoleEndPoint: '/api/client/role',
+  updateInfoEndPoint: '/api/client/update-info',
+  updateContactEndPoint: '/api/client/update-contact',
+  updatePasswordEndPoint: '/api/client/update-password',
+
+  /**
+   *  -----   -- CONNECT PROVIDERS --
+   */
+  connectGitHubEndPoint: '/connect/github',
+  connectGoogleMeetEndPoint: '/connect/google/meet',
+  connectGoogleCalendarEndPoint: '/connect/google/calendar',
+  connectGoogleGmailEndPoint: '/connect/google/meet',
+  connectGitLabEndPoint: '/connect/gitlab',
+  connectBitbucketEndPoint: '/connect/bitbucket',
+  connectJiraEndPoint: '/connect/jira',
+  connectMegaEndPoint: '/connect/mega',
+
+  /**
+   *  -----   -- PROVIDER COMPANY --
+   */
+  providerListEndPoint: '/api/provider/list',
+  accessGitHubEndPoint: '/api/provider/access/github',
+  authGitHubEndPoint: '/api/provider/auth/github'
 };
 
 function getEndPoints() {
