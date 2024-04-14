@@ -21,7 +21,7 @@ jobs:
         id: vercel-deploy
         uses: amondnet/vercel-action@v25
         with:
-          vercel-project-name: bmft
+          vercel-project-name: mangment-tasks
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_TEAM_ID }}
