@@ -52,7 +52,6 @@ const ProfileSection = () => {
    * */
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    console.log('Logout');
     WebService().logout();
     window.location.replace('/');
   };

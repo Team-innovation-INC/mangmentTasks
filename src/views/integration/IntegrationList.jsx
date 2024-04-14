@@ -17,6 +17,8 @@ import MainCard from 'ui-component/cards/MainCard';
 import WebService from 'api/useJwt';
 import { toast } from 'react-toastify';
 
+import PropTypes from 'prop-types';
+
 // ==============================|| Developer Calendar PAGE ||============================== //
 
 const ConditionalButton = ({ type, loadingProviders, handleConnect, integrationStatus }) => {
@@ -42,6 +44,13 @@ const ConditionalButton = ({ type, loadingProviders, handleConnect, integrationS
   }
 };
 
+// Inside your ConditionalButton component definition
+ConditionalButton.propTypes = {
+  type: PropTypes.string.isRequired,
+  loadingProviders: PropTypes.string,
+  handleConnect: PropTypes.func.isRequired,
+  integrationStatus: PropTypes.string.isRequired
+};
 function ProviderCategory({ category, type, handleConnect }) {
   return (
     <MainCard title={type} contentSX={{ display: 'flex', gap: 2, flexWarp: 'warp', overflowX: 'scroll' }}>
@@ -56,10 +65,15 @@ function ProviderCategory({ category, type, handleConnect }) {
   );
 }
 
+// Inside your ProviderCategory component definition
+ProviderCategory.propTypes = {
+  category: PropTypes.array.isRequired,
+  type: PropTypes.string.isRequired,
+  handleConnect: PropTypes.func.isRequired
+};
+
 function Provider({ provider, loadingProviders, handleConnect }) {
-  console.log(provider, 'providerprovider');
   const { type, providerId, integrationStatus } = provider;
-  console.log(type, 'type');
   return (
     <MainCard contentSX={{ display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center' }} title={type}>
       {/* Render icon based on provider type */}
@@ -83,6 +97,17 @@ function Provider({ provider, loadingProviders, handleConnect }) {
     </MainCard>
   );
 }
+
+// Inside your Provider component definition
+Provider.propTypes = {
+  provider: PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    providerId: PropTypes.string.isRequired,
+    integrationStatus: PropTypes.string.isRequired
+  }).isRequired,
+  loadingProviders: PropTypes.string,
+  handleConnect: PropTypes.func.isRequired
+};
 
 const IntegrationList = () => {
   const [loading, setLoading] = React.useState(true);

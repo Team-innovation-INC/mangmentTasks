@@ -49,16 +49,14 @@ const FirebaseLogin = ({ ...others }) => {
   const [checked, setChecked] = useState(true);
 
   const googleHandler = async () => {
-    console.error('Login');
     try {
       const response = (await WebService().loginGoogle()).data;
       if (response.success) {
         toast.success(response.message);
         window.open(response.data.authorizeUrl, '_top');
       }
-      console.log(response);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
