@@ -12,7 +12,8 @@ const endPoints = {
   logoutEndPoint: '/api/auth/logout',
   accessGitHub: '/api/provider/access/github',
   authGitHub: '/api/provider/auth/github',
-  providerList: '/api/provider/list'
+  providerList: '/api/provider/list',
+  accessGoogle: '/api/auth/sign-in/google'
 };
 
 function getEndPoints() {

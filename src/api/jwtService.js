@@ -211,6 +211,15 @@ export default class JwtService {
   }
 
   /**
+   * Initiates the login process by sending a POST request.
+   * @param {...*} args - Arguments to be passed to the POST request.
+   * @returns {Promise} A Promise representing the login request.
+   */
+  loginGoogle() {
+    return axios.get(this.jwtConfig.accessGoogle);
+  }
+
+  /**
    * Initiates the registration process by sending a POST request.
    * @param {...*} args - Arguments to be passed to the POST request.
    * @returns {Promise} A Promise representing the registration request.
