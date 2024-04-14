@@ -18,7 +18,7 @@ import { IconChevronDown, IconChevronUp } from '@tabler/icons';
 
 const NavCollapse = ({ menu, level }) => {
   const theme = useTheme();
-  const customization = useSelector((state) => state.customization);
+  const customization = useSelector(state => state.customization);
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
@@ -34,7 +34,7 @@ const NavCollapse = ({ menu, level }) => {
 
   const { pathname } = useLocation();
   const checkOpenForParent = (child, id) => {
-    child.forEach((item) => {
+    child.forEach(item => {
       if (item.url === pathname) {
         setOpen(true);
         setSelected(id);
@@ -47,7 +47,7 @@ const NavCollapse = ({ menu, level }) => {
     setOpen(false);
     setSelected(null);
     if (menu.children) {
-      menu.children.forEach((item) => {
+      menu.children.forEach(item => {
         if (item.children?.length) {
           checkOpenForParent(item.children, menu.id);
         }
@@ -62,7 +62,7 @@ const NavCollapse = ({ menu, level }) => {
   }, [pathname, menu.children]);
 
   // menu collapse & item
-  const menus = menu.children?.map((item) => {
+  const menus = menu.children?.map(item => {
     switch (item.type) {
       case 'collapse':
         return <NavCollapse key={item.id} menu={item} level={level + 1} />;

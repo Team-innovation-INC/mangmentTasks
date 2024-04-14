@@ -37,7 +37,7 @@ function valueText(value) {
 const Customization = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const customization = useSelector((state) => state.customization);
+  const customization = useSelector(state => state.customization);
 
   // drawer on/off
   const [open, setOpen] = useState(false);
@@ -137,7 +137,7 @@ const Customization = () => {
                   <RadioGroup
                     aria-label="font-family"
                     value={fontFamily}
-                    onChange={(e) => setFontFamily(e.target.value)}
+                    onChange={e => setFontFamily(e.target.value)}
                     name="row-radio-buttons-group"
                   >
                     <FormControlLabel

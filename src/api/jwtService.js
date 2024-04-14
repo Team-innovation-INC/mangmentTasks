@@ -12,25 +12,25 @@ export default class JwtService {
   jwtConfig = { ...jwtDefaultConfig };
 
   // ** For Refreshing Token
-  isAlreadyFetchingAccessToken = false; //--- getting token access finished status
-  JSON = this.JSON; //--- json instance
+  isAlreadyFetchingAccessToken = false;
+  JSON = this.JSON;
 
   // ** For Refreshing Token
-  subscribers = []; //--- list of token connected
+  subscribers = [];
 
   /**
    * Constructs a new JwtService instance.
    * @param {Object} jwtOverrideConfig - Custom JWT configuration to override default settings.
    */
   constructor(jwtOverrideConfig) {
-    this.jwtConfig = { ...this.jwtConfig, ...jwtOverrideConfig }; //--- getting based info
+    this.jwtConfig = { ...this.jwtConfig, ...jwtOverrideConfig };
     //================= Request Interceptor === configuration request before sending HTTP request to the server
     /**
      * @see [axios_interceptors] (https://axios-http.com/docs/interceptors)
      */
     axios.interceptors.request.use(
       // ---- calling method
-      (config) => {
+      config => {
         // ** Get token from localStorage
         const accessToken = localStorage.getItem(this.jwtConfig.storageTokenKeyName);
         // ** If token is present add it to request's Authorization Header
@@ -40,17 +40,17 @@ export default class JwtService {
         }
         return config;
       },
-      (error) => {
+      error => {
         Promise.reject(error);
       }
     );
 
     // ** Add request/response interceptor
     axios.interceptors.response.use(
-      (response) => {
+      response => {
         return { ...response };
       },
-      (error) => {
+      error => {
         const { response } = error;
         if (response) {
           return { ...response };
@@ -71,6 +71,7 @@ export default class JwtService {
     }
     return null;
   }
+
   //----- test server
   test() {
     return axios.get(this.jwtConfig.test);
@@ -81,7 +82,7 @@ export default class JwtService {
    * @param {string} accessToken - The newly fetched access token.
    */
   onAccessTokenFetched(accessToken) {
-    this.subscribers = this.subscribers.filter((callback) => callback(accessToken));
+    this.subscribers = this.subscribers.filter(callback => callback(accessToken));
   }
 
   /**
@@ -211,6 +212,15 @@ export default class JwtService {
   }
 
   /**
+   * Initiates the login process by sending a POST request.
+   * @param {...*} args - Arguments to be passed to the POST request.
+   * @returns {Promise} A Promise representing the login request.
+   */
+  loginGoogle() {
+    return axios.get(this.jwtConfig.accessGoogleEndpoint);
+  }
+
+  /**
    * Initiates the registration process by sending a POST request.
    * @param {...*} args - Arguments to be passed to the POST request.
    * @returns {Promise} A Promise representing the registration request.
@@ -219,45 +229,69 @@ export default class JwtService {
     return axios.post(this.jwtConfig.registerEndpoint, ...args);
   }
 
-  //----- log out
+  /**
+   * Logs out the user by removing refresh token and user data from local storage.
+   * @returns {void} No return value.
+   */
   logout() {
     this.removeRefreshToken();
     this.removeUserData();
   }
 
-  //----- get the active user (connected user)
+  /**
+   * Retrieves the connected user data from the server.
+   * @returns {Promise} A Promise representing the GET request for connected user data.
+   */
   getConnectedUser() {
     return axios.get(this.jwtConfig.getActiveUserEndPoint, {
-      headers: {
-        Authorization: 'bearer ' + this.getAuthorization()
-      }
+      headers: this.getAuthorization()
     });
   }
 
-  //----- update user password from profile user
+  /**
+   * Updates the user's password by sending a POST request.
+   * @param {...*} args - Arguments to be passed to the POST request.
+   * @returns {Promise} A Promise representing the POST request for updating the password.
+   */
   updatePassword(...args) {
     return axios.post(this.jwtConfig.updatePasswordEndPoint, ...args);
   }
 
-  //----- update user infos from profile user
+  /**
+   * Updates the user's profile by sending a POST request.
+   * @param {...*} args - Arguments to be passed to the POST request.
+   * @returns {Promise} A Promise representing the POST request for updating the profile.
+   */
   updateProfile(...args) {
     return axios.post(this.jwtConfig.updateProfileEndPoint, ...args);
   }
 
+  /**
+   * Retrieves access to GitHub by sending a GET request.
+   * @returns {Promise} A Promise representing the GET request for accessing GitHub.
+   */
   accessToGithHub() {
-    return axios.get(this.jwtConfig.accessGitHub, {
+    return axios.get(this.jwtConfig.accessGitHubEndPoint, {
       headers: this.getAuthorization()
     });
   }
 
+  /**
+   * Connects to GitHub by sending a GET request.
+   * @returns {Promise} A Promise representing the GET request for connecting to GitHub.
+   */
   connectToGitHub() {
-    return axios.get(this.jwtConfig.authGitHub, {
+    return axios.get(this.jwtConfig.authGitHubEndPoint, {
       headers: this.getAuthorization()
     });
   }
 
-  getPRoviderList() {
-    return axios.get(this.jwtConfig.providerList, {
+  /**
+   * Retrieves the provider list by sending a GET request.
+   * @returns {Promise} A Promise representing the GET request for retrieving the provider list.
+   */
+  getProviderList() {
+    return axios.get(this.jwtConfig.providerListEndPoint, {
       headers: this.getAuthorization()
     });
   }

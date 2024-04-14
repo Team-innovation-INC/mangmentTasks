@@ -1,4 +1,8 @@
-// ** JWT Service Import
+// ========================== Web service Instance uses for API ========================== //
+
+/**
+ *  JWT Service Import
+ */
 import JwtService from './jwtService';
 
 // ** Export Service as useJwt

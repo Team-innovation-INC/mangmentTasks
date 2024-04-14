@@ -1,0 +1,32 @@
+name: Deploy preview app
+on:
+  pull_request:
+  push:
+    branches: develop
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    env:
+    runs-on: ubuntu-latest
+    outputs:
+      preview-url: ${{ steps.vercel-deploy.outputs.preview-url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy PR
+        id: vercel-deploy
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-project-name: mangment-tasks
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
+          vercel-org-id: ${{ env.VERCEL_ORG_ID }}
+      - name: Run Newman Tests
+        run: |
+          newman run src/test/postman_collection.json --env-var  BMFT_URL=${{steps.vercel-deploy.outputs.preview-url}} --env-var AUTH_API_URL=${{vars.AUTH_API_URL}}graphql

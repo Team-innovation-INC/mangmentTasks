@@ -66,10 +66,10 @@ const NotificationSection = () => {
   const anchorRef = useRef(null);
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
-  const handleClose = (event) => {
+  const handleClose = event => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -84,7 +84,7 @@ const NotificationSection = () => {
     prevOpen.current = open;
   }, [open]);
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     if (event?.target.value) setValue(event?.target.value);
   };
 
@@ -184,7 +184,7 @@ const NotificationSection = () => {
                                   native: true
                                 }}
                               >
-                                {status.map((option) => (
+                                {status.map(option => (
                                   <option key={option.value} value={option.value}>
                                     {option.label}
                                   </option>
