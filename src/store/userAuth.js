@@ -24,12 +24,12 @@ const authReducer = async (state = initialState, action) => {
           window.location.replace('/dashboard');
           isActive = true;
         } else {
-          toast.error(response.data.message, {
+          toast.warning(response.data.message, {
             position: 'top-center'
           });
         }
       } catch (error) {
-        console.log(error);
+        toast.error('server error');
       }
       return {
         ...state,
@@ -44,7 +44,7 @@ const authReducer = async (state = initialState, action) => {
           isActive = true;
         }
       } catch (error) {
-        console.log(error, 'error');
+        toast.error('server error');
       }
       return {
         ...state,

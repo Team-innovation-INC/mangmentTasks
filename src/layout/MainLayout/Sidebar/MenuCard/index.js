@@ -19,6 +19,7 @@ import {
 // assets
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { dayOfWeek, CurrentMonth, daysOfMonth } from 'utils/dates';
+import { useNavigate } from 'react-router';
 
 // styles
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -84,13 +85,13 @@ LinearProgressWithLabel.propTypes = {
 
 const MenuCard = () => {
   const theme = useTheme();
-
+  const navigate = useNavigate();
   return (
     <CardStyle>
       <CardContent sx={{ p: 2 }}>
         <List sx={{ p: 0, m: 0 }}>
           <ListItem alignItems="flex-start" disableGutters sx={{ p: 0 }}>
-            <ListItemAvatar sx={{ mt: 0 }} onClick={() => console.log('navigate to calender')}>
+            <ListItemAvatar sx={{ mt: 0 }} onClick={() => navigate('developer/calendar')}>
               <Avatar
                 variant="rounded"
                 sx={{

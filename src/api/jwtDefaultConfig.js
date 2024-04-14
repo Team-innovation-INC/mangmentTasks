@@ -17,7 +17,7 @@ const endPoints = {
   loginEndpoint: '/api/auth/sign-in',
   registerEndpoint: '/api/auth/sign-up',
   logoutEndPoint: '/api/auth/logout',
-  accessGoogle: '/api/auth/sign-in/google',
+  accessGoogleEndpoint: '/api/auth/sign-in/google',
 
   /**
    *  -----   -- ACTIVE USER --

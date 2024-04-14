@@ -74,9 +74,7 @@ ProviderCategory.propTypes = {
 };
 
 function Provider({ provider, loadingProviders, handleConnect }) {
-  console.log(provider, 'providerprovider');
   const { type, providerId, integrationStatus } = provider;
-  console.log(type, 'type');
   return (
     <MainCard contentSX={{ display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center' }} title={type}>
       {/* Render icon based on provider type */}

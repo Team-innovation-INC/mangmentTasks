@@ -142,14 +142,12 @@ const FirebaseRegister = ({ ...others }) => {
           fullName: Yup.string().required('userName is required')
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-          console.log(values, 'values');
           try {
-            dispatch({ type: SIGNUP, payload: { ...values } });
             if (scriptedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
             }
-            console.log('passe drer ', values);
+            dispatch({ type: SIGNUP, payload: { ...values } });
           } catch (err) {
             console.error(err);
             if (scriptedRef.current) {
