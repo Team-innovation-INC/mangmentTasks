@@ -7,3 +7,6 @@ updates:
     directory: '/'
     schedule:
       interval: 'monthly'
+    target:
+      branches:
+        - develop
