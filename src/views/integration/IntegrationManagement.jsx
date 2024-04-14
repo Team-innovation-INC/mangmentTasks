@@ -91,7 +91,7 @@ const IntegrationList = () => {
   React.useEffect(() => {
     async function fetchIntegrationList() {
       try {
-        const response = (await WebService().getPRoviderList()).data;
+        const response = (await WebService().getProviderList()).data;
         if (response.success) {
           setProvidersByCategories(response.data);
         }
@@ -114,7 +114,7 @@ const IntegrationList = () => {
         window.open(response.data.authorizationUrl);
       }
 
-      const response = (await WebService().getPRoviderList()).data;
+      const response = (await WebService().getProviderList()).data;
       setProvidersByCategories(response.data);
       toast.info(response.message);
     } catch (error) {
