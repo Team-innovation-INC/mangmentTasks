@@ -43,7 +43,7 @@
     "react-toastify": "^10.0.5",
     "redux": "^4.2.0",
     "serve": "^14.2.0",
-    "yup": "^0.32.11"
+    "yup": "^1.4.0"
   },
   "scripts": {
     "check-format": "prettier --check .",
