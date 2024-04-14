@@ -3,7 +3,7 @@
  * @important !!!!!!
  * just for test next will be involved to the environment variables
  */
-const basedUrl = 'http://localhost:5000';
+const basedUrl = process.env.REACT_APP_BASE_URL;
 
 const endPoints = {
   /**
