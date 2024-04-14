@@ -38,7 +38,7 @@ const status = [
 const TotalGrowthBarChart = ({ isLoading }) => {
   const [value, setValue] = useState('today');
   const theme = useTheme();
-  const customization = useSelector((state) => state.customization);
+  const customization = useSelector(state => state.customization);
 
   const { navType } = customization;
   const { primary } = theme.palette.text;
@@ -108,8 +108,8 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <TextField id="standard-select-currency" select value={value} onChange={(e) => setValue(e.target.value)}>
-                    {status.map((option) => (
+                  <TextField id="standard-select-currency" select value={value} onChange={e => setValue(e.target.value)}>
+                    {status.map(option => (
                       <MenuItem key={option.value} value={option.value}>
                         {option.label}
                       </MenuItem>

@@ -19,7 +19,7 @@ const NavItem = ({ item, level }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const customization = useSelector((state) => state.customization);
+  const customization = useSelector(state => state.customization);
   const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
 
   const Icon = item.icon;
@@ -28,8 +28,8 @@ const NavItem = ({ item, level }) => {
   ) : (
     <FiberManualRecordIcon
       sx={{
-        width: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6,
-        height: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6
+        width: customization.isOpen.findIndex(id => id === item?.id) > -1 ? 8 : 6,
+        height: customization.isOpen.findIndex(id => id === item?.id) > -1 ? 8 : 6
       }}
       fontSize={level > 0 ? 'inherit' : 'medium'}
     />
@@ -47,7 +47,7 @@ const NavItem = ({ item, level }) => {
     listItemProps = { component: 'a', href: item.url, target: itemTarget };
   }
 
-  const itemHandler = (id) => {
+  const itemHandler = id => {
     dispatch({ type: MENU_OPEN, id });
     if (matchesSM) dispatch({ type: SET_MENU, opened: false });
   };
@@ -57,7 +57,7 @@ const NavItem = ({ item, level }) => {
     const currentIndex = document.location.pathname
       .toString()
       .split('/')
-      .findIndex((id) => id === item.id);
+      .findIndex(id => id === item.id);
     if (currentIndex > -1) {
       dispatch({ type: MENU_OPEN, id: item.id });
     }
@@ -76,13 +76,13 @@ const NavItem = ({ item, level }) => {
         py: level > 1 ? 1 : 1.25,
         pl: `${level * 24}px`
       }}
-      selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
+      selected={customization.isOpen.findIndex(id => id === item.id) > -1}
       onClick={() => itemHandler(item.id)}
     >
       <ListItemIcon sx={{ my: 'auto', minWidth: !item?.icon ? 18 : 36 }}>{itemIcon}</ListItemIcon>
       <ListItemText
         primary={
-          <Typography variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'} color="inherit">
+          <Typography variant={customization.isOpen.findIndex(id => id === item.id) > -1 ? 'h5' : 'body1'} color="inherit">
             {item.title}
           </Typography>
         }

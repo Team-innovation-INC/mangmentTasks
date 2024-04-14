@@ -108,7 +108,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                       variant={timeValue ? 'contained' : 'text'}
                       size="small"
                       sx={{ color: 'inherit' }}
-                      onClick={(e) => handleChangeTime(e, true)}
+                      onClick={e => handleChangeTime(e, true)}
                     >
                       Month
                     </Button>
@@ -117,7 +117,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                       variant={!timeValue ? 'contained' : 'text'}
                       size="small"
                       sx={{ color: 'inherit' }}
-                      onClick={(e) => handleChangeTime(e, false)}
+                      onClick={e => handleChangeTime(e, false)}
                     >
                       Year
                     </Button>

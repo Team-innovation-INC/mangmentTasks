@@ -1,4 +1,12 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+yarn check-all
 
-npm run check-all
+# Run tests
+yarn test
+
+# Check if tests failed
+if [ $? -eq 0 ]; then
+  echo "Tests passed, proceeding with commit"
+else
+  echo "Tests failed or no tests found, aborting commit"
+  exit 1
+fi

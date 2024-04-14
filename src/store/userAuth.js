@@ -1,6 +1,7 @@
 // action - state management
 import WebService from 'api/useJwt';
 import * as actionTypes from './actions';
+import { toast } from 'react-toastify';
 
 export const initialState = {
   userDetails: {},
@@ -16,17 +17,19 @@ const authReducer = async (state = initialState, action) => {
     case actionTypes.SINGING:
       try {
         const response = await WebService().login(action.payload);
-        console.log(response, "response")
         if (response.status === 200) {
           user = response.data.user;
+          WebService().setToken(response.data.token);
+          WebService().setUserData(response.data.user);
+          window.location.replace('/dashboard');
           isActive = true;
+        } else {
+          toast.warning(response.data.message, {
+            position: 'top-center'
+          });
         }
-        WebService().setToken(response.data.token);
-        WebService().setUserData(response.data.user);
-        window.location.replace('/dashboard');
       } catch (error) {
-        console.log(error)
-        // state.userDetails = {};
+        toast.error('server error');
       }
       return {
         ...state,
@@ -41,8 +44,7 @@ const authReducer = async (state = initialState, action) => {
           isActive = true;
         }
       } catch (error) {
-        console.log(error, "error")
-        //state.userDetails = {};
+        toast.error('server error');
       }
       return {
         ...state,

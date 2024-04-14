@@ -54,9 +54,11 @@ const Login = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <Grid item container direction="column" alignItems="center" xs={12}>
-                      <Typography component={Link} to="/pages/register/register3" variant="subtitle1" sx={{ textDecoration: 'none' }}>
-                        Don&apos;t have an account?
-                      </Typography>
+                      <a href="https://progress-e7yl.onrender.com" target="_blank" rel="noreferrer">
+                        <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+                          Don&apos;t have an account?
+                        </Typography>
+                      </a>
                     </Grid>
                   </Grid>
                 </Grid>

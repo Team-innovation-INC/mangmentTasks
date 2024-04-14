@@ -13,7 +13,7 @@ const chartData = {
     colors: ['#fff'],
     fill: {
       type: 'solid',
-      opacity: 1 
+      opacity: 1
     },
     stroke: {
       curve: 'smooth',
@@ -23,7 +23,7 @@ const chartData = {
       min: 0,
       max: 100,
       labels: {
-        formatter: function(value) {
+        formatter: function (value) {
           return value + '%';
         }
       }
@@ -42,7 +42,7 @@ const chartData = {
       marker: {
         show: false
       },
-      formatter: function(val) {
+      formatter: function (val) {
         return val.toFixed(2) + '%';
       }
     }

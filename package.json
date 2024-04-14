@@ -1,5 +1,5 @@
 {
-  "name": "play-pro--progress",
+  "name": "management_tasks--progress",
   "version": "1.0.0",
   "private": true,
   "homepage": "",
@@ -19,12 +19,16 @@
     "@mui/utils": "^5.8.6",
     "@mui/x-date-pickers": "^6.14.0",
     "@tabler/icons": "^1.72.0",
+    "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10",
     "apexcharts": "^3.35.3",
     "axios": "^1.5.0",
     "dayjs": "^1.11.9",
     "formik": "^2.2.9",
     "framer-motion": "^6.3.16",
+    "husky": "^9.0.11",
     "material-ui-popup-state": "^4.0.1",
+    "newman": "^6.1.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -47,11 +51,12 @@
     "fix-format": "prettier --write .",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "CI=true react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "prepare": "husky"
   },
   "eslintConfig": {
     "extends": [

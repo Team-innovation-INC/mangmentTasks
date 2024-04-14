@@ -16,7 +16,7 @@ const NavGroup = ({ item }) => {
   const theme = useTheme();
 
   // menu list collapse & items
-  const items = item.children?.map((menu) => {
+  const items = item.children?.map(menu => {
     switch (menu.type) {
       case 'collapse':
         return (menu.role === undefined || menu.role.includes(userRole)) && <NavCollapse key={menu.id} menu={menu} level={1} />;

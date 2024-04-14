@@ -41,7 +41,7 @@ import WebService from 'api/useJwt';
 const ProfileSection = () => {
   const userDetails = WebService().getUserData();
   const theme = useTheme();
-  const customization = useSelector((state) => state.customization);
+  const customization = useSelector(state => state.customization);
   const navigate = useNavigate();
 
   const [value, setValue] = useState('');
@@ -52,7 +52,6 @@ const ProfileSection = () => {
    * */
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    console.log('Logout');
     WebService().logout();
     window.location.replace('/');
   };
@@ -61,7 +60,7 @@ const ProfileSection = () => {
     window.location.replace('/profile');
   };
 
-  const handleClose = (event) => {
+  const handleClose = event => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -77,7 +76,7 @@ const ProfileSection = () => {
     }
   };
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
   const prevOpen = useRef(open);
@@ -172,7 +171,7 @@ const ProfileSection = () => {
                       sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
                       id="input-search-profile"
                       value={value}
-                      onChange={(e) => setValue(e.target.value)}
+                      onChange={e => setValue(e.target.value)}
                       placeholder="Search profile options"
                       startAdornment={
                         <InputAdornment position="start">
@@ -209,7 +208,7 @@ const ProfileSection = () => {
                         <ListItemButton
                           sx={{ borderRadius: `${customization.borderRadius}px` }}
                           selected={selectedIndex === 0}
-                          onClick={(event) => {
+                          onClick={event => {
                             handleListItemClick(event, 0, '#');
                             handleProfile();
                           }}
