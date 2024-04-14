@@ -1,1 +1,12 @@
 yarn check-all
+
+# Run tests
+yarn test
+
+# Check if tests failed
+if [ $? -eq 0 ]; then
+  echo "Tests passed, proceeding with commit"
+else
+  echo "Tests failed or no tests found, aborting commit"
+  exit 1
+fi
