@@ -21,11 +21,13 @@ jobs:
         id: vercel-deploy
         uses: amondnet/vercel-action@v25
         with:
-          vercel-project-name: mangment-tasks
+          vercel-project-name: bmft
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_TEAM_ID }}
+          scope: ${{ secrets.VERCEL_TEAM_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
-          vercel-org-id: ${{ env.VERCEL_ORG_ID }}
+
       - name: Run Newman Tests
         run: |
           newman run src/test/postman_collection.json --env-var  BMFT_URL=${{steps.vercel-deploy.outputs.preview-url}} --env-var AUTH_API_URL=${{vars.AUTH_API_URL}}graphql
