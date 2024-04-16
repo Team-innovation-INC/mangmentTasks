@@ -254,7 +254,9 @@ export default class JwtService {
    * @returns {Promise} A Promise representing the POST request for updating the password.
    */
   updatePassword(...args) {
-    return axios.post(this.jwtConfig.updatePasswordEndPoint, ...args);
+    return axios.put(this.jwtConfig.updatePasswordEndPoint, ...args, {
+      headers: this.getAuthorization()
+    });
   }
 
   /**
@@ -294,5 +296,31 @@ export default class JwtService {
     return axios.get(this.jwtConfig.providerListEndPoint, {
       headers: this.getAuthorization()
     });
+  }
+
+  /**
+   * Retrieves the help status by sending a GET request.
+   * @param {string} params - The parameter specifying the field to retrieve from the user's help status.
+   * @returns {Promise} A Promise representing the GET request for retrieving the help status.
+   */
+  getHelpStatus(params) {
+    return axios.get(`${this.jwtConfig.helpUserStatusEndPoint}/${params}`, {
+      headers: this.getAuthorization()
+    });
+  }
+
+  /**
+   * Updates the help status by sending a PUT request.
+   * @param {string} fieldToUpdate - The field within the user's help status to update.
+   * @returns {Promise} A Promise representing the PUT request for updating the help status.
+   */
+  updateHelpStatus(fieldToUpdate) {
+    return axios.put(
+      `${this.jwtConfig.helpUserStatusEndPoint}`,
+      { fieldToUpdate },
+      {
+        headers: this.getAuthorization()
+      }
+    );
   }
 }

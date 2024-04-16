@@ -21,6 +21,10 @@ const AuthenticationRoutes = {
     {
       path: 'gmail',
       element: <GoogleAuth />
+    },
+    {
+      path: 'auth',
+      element: <>test</>
     }
   ]
 };

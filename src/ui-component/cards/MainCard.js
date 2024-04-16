@@ -26,6 +26,7 @@ const MainCard = forwardRef(
       shadow,
       sx = {},
       title,
+      icon,
       ...others
     },
     ref
@@ -46,7 +47,21 @@ const MainCard = forwardRef(
         }}
       >
         {/* card header and action */}
-        {title && <CardHeader sx={headerSX} title={darkTitle ? <Typography variant="h3">{title}</Typography> : title} action={secondary} />}
+        {title && (
+          <CardHeader
+            sx={headerSX}
+            title={
+              darkTitle ? (
+                <Typography variant="h3">{title}</Typography>
+              ) : (
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  {title} {icon && <div> {icon}</div>}
+                </div>
+              )
+            }
+            action={secondary}
+          />
+        )}
 
         {/* content & header divider */}
         {title && <Divider />}
@@ -74,7 +89,8 @@ MainCard.propTypes = {
   secondary: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object]),
   shadow: PropTypes.string,
   sx: PropTypes.object,
-  title: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object])
+  title: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object]),
+  icon: PropTypes.node
 };
 
 export default MainCard;
