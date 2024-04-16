@@ -45,7 +45,12 @@ const endPoints = {
    */
   providerListEndPoint: '/api/provider/list',
   accessGitHubEndPoint: '/api/provider/access/github',
-  authGitHubEndPoint: '/api/provider/auth/github'
+  authGitHubEndPoint: '/api/provider/auth/github',
+
+  /**
+   *  -----     -- ACTIVE USER HELP --
+   */
+  helpUserStatusEndPoint: '/api/client/help/profile/'
 };
 
 function getEndPoints() {
