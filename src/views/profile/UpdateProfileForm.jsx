@@ -172,6 +172,10 @@ const UpdateProfileForm = () => {
                 setErrors({ submit: response.message });
               } else {
                 toast.success(response.message, { position: 'top-center' });
+                const updateInfo = (await WebService().getConnectedUser()).data;
+                if (updateInfo.user) {
+                  WebService().setUserData(updateInfo.user);
+                }
                 navigate('/profile  ');
               }
             } catch (error) {
