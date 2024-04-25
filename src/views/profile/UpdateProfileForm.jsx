@@ -24,7 +24,7 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import { useSelector } from 'react-redux';
 import MainCard from 'ui-component/cards/MainCard';
 import GoogleIcon from '@mui/icons-material/Google';
-import { FileMosaic, ImagePreview, FullScreen } from '@files-ui/react';
+import { FileMosaic, ImagePreview, FullScreen, useFakeProgress } from '@files-ui/react';
 import { uploadFileToStorage } from 'api/firebase/uploadFile';
 
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
@@ -50,6 +50,8 @@ const sampleFile = {
 };
 
 const UpdateProfileForm = () => {
+  const progress = useFakeProgress();
+
   const { info, contact } = WebService().getUserData();
   console.log(info.pic, 'info.pic');
   const [imgSrc, setImgSrc] = React.useState(info.pic ?? undefined);
@@ -58,7 +60,7 @@ const UpdateProfileForm = () => {
 
   const updateFiles = async (fileArray, setFieldValue) => {
     const file = fileArray[0];
-
+    setLoading('uploading');
     try {
       const firebaseImageUrl = await uploadFileToStorage(file);
       setValue(file);
@@ -68,8 +70,6 @@ const UpdateProfileForm = () => {
       setLoading('success');
     } catch (error) {
       setLoading('error');
-    } finally {
-      setLoading(undefined);
     }
   };
 
@@ -87,6 +87,27 @@ const UpdateProfileForm = () => {
 
   const handleBack = () => {
     navigate('/profile');
+  };
+
+  const sumbitInfo = async (values, { setSubmitting, setErrors }) => {
+    const data = transformFormData(values);
+    try {
+      const response = (await WebService().updateInformation(data)).data;
+      if (!response.success) {
+        setErrors({ submit: response.message });
+      } else {
+        toast.success(response.message, { position: 'top-center' });
+        const updateInfo = (await WebService().getConnectedUser()).data;
+        if (updateInfo.user) {
+          WebService().setUserData(updateInfo.user);
+        }
+        navigate('/profile  ');
+      }
+    } catch (error) {
+      throw new Error(erro);
+    } finally {
+      setSubmitting(false);
+    }
   };
   return (
     <MainCard title="Update Profile" darkTitle boxShadow shadow="8" className={classes.root}>
@@ -165,24 +186,7 @@ const UpdateProfileForm = () => {
             bio: Yup.string().required('bio is required')
           })}
           onSubmit={async (values, { setSubmitting, setErrors }) => {
-            const data = transformFormData(values);
-            try {
-              const response = (await WebService().updateInformation(data)).data;
-              if (!response.success) {
-                setErrors({ submit: response.message });
-              } else {
-                toast.success(response.message, { position: 'top-center' });
-                const updateInfo = (await WebService().getConnectedUser()).data;
-                if (updateInfo.user) {
-                  WebService().setUserData(updateInfo.user);
-                }
-                navigate('/profile  ');
-              }
-            } catch (error) {
-              throw new Error(erro);
-            } finally {
-              setSubmitting(false);
-            }
+            await sumbitInfo(values, { setSubmitting, setErrors });
           }}
         >
           {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting, isValid, setFieldValue }) => (
@@ -191,9 +195,9 @@ const UpdateProfileForm = () => {
                 <Grid item xs={12} sm={6}>
                   <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                     {value ? (
-                      <FileMosaic id={2} file={value} onSee={handleSee} imageUrl={imgSrc} info progress={loading} />
+                      <FileMosaic id={2} file={value} onSee={handleSee} imageUrl={imgSrc} info uploadStatus={loading} progress={progress} />
                     ) : (
-                      <FileMosaic id={2} {...sampleFile} info />
+                      <FileMosaic id={2} uploadStatus={loading} progress={progress} {...sampleFile} info />
                     )}
                     <input type="file" accept="image/*" onChange={e => updateFiles(e.target.files, setFieldValue)} />
                     <FullScreen open={open} onClose={handleClose}>
