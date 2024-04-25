@@ -1,5 +1,5 @@
 import Joyride from 'react-joyride';
-import { Typography, Grid } from '@mui/material';
+import { Typography, Grid, Tooltip } from '@mui/material';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import PasswordIcon from '@mui/icons-material/Password';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
@@ -9,12 +9,12 @@ import HelpIcon from '@mui/icons-material/Help';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
-
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import WebService from 'api/useJwt';
 
+import TourIcon from '@mui/icons-material/Tour';
 const cardData = [
   {
     title: 'Update Profile',
@@ -78,6 +78,13 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
+const Help = ({ setRunTour }) => {
+  return (
+    <Tooltip title="guide">
+      <TourIcon sx={{ width: 24, height: 24 }} onClick={() => setRunTour(true)} />
+    </Tooltip>
+  );
+};
 const ProfilePage = () => {
   const classes = useStyles();
   const userData = WebService().getUserData();
@@ -101,7 +108,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <MainCard title="Welcome to Your Profile Hub" darkTitle boxShadow shadow="8" className={classes.root}>
+      <MainCard icon={<Help setRunTour={setRunTour} />} title="Welcome to Your Profile Hub" boxShadow shadow="8" className={classes.root}>
         <Grid container spacing={6}>
           {cardData.map((card, index) => (
             <Grid item key={index} sm={12} md={6} lg={4}>
