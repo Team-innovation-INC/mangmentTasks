@@ -27,6 +27,8 @@ const endPoints = {
   updateInfoEndPoint: '/api/client/update-info',
   updateContactEndPoint: '/api/client/update-contact',
   updatePasswordEndPoint: '/api/client/update-password',
+  updateInformationEndPoint: '/api/client/update-information',
+  checkExistUserNameEndPoint: '/api/client/check/userName',
 
   /**
    *  -----   -- CONNECT PROVIDERS --

@@ -260,6 +260,59 @@ export default class JwtService {
   }
 
   /**
+   * Updates user information using a PUT request to a specified endpoint.
+   *
+   * @param {Object} data - The data to update, typically a user information object containing fields like gender, age, bio, pic, etc.
+   * @param {Object} config - Additional Axios configuration options, if any.
+   * @returns {Promise<Object>} A promise that resolves with the Axios response object. The response typically contains status code, headers, and data.
+   *
+   * @example
+   * const data = {
+   *   fullName: raed rdhaounia,
+   *   userName: raedrdhaounia,
+   *   gender: true,
+   *   age: 25,
+   *   bio: "This is my biography.",
+   *   pic: "https://example.com/pic.jpg",
+   * };
+   *
+   * webService().updateInformation(data)
+   *   .then(response => {
+   *     console.log("Update successful:", response.data);
+   *   })
+   *   .catch(error => {
+   *     console.error("Error updating information:", error);
+   *   });
+   */
+  updateInformation(...args) {
+    return axios.put(this.jwtConfig.updateInformationEndPoint, ...args, {
+      headers: this.getAuthorization()
+    });
+  }
+
+  /**
+   * Checks if a given username exists by sending a GET request to a specific endpoint.
+   *
+   * @param {string} userName - The username to check for existence.
+   * @returns {Promise<Object>} A promise that resolves with the Axios response object. The response typically contains a boolean field indicating whether the username exists.
+   *
+   * @example
+   * webService().checkExistUserName("exampleUser")
+   *   .then(response => {
+   *     const { exist } = response.data;
+   *     console.log("Does the username exist?", exist);
+   *   })
+   *   .catch(error => {
+   *     console.error("Error checking username existence:", error);
+   *   });
+   */
+  checkExistUserName(userName) {
+    return axios.get(`${this.jwtConfig.checkExistUserNameEndPoint}/${userName}`, {
+      headers: this.getAuthorization()
+    });
+  }
+
+  /**
    * Updates the user's profile by sending a POST request.
    * @param {...*} args - Arguments to be passed to the POST request.
    * @returns {Promise} A Promise representing the POST request for updating the profile.
